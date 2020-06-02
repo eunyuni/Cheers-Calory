@@ -13,11 +13,11 @@ struct UserInfo: Codable {
     private init(){}
     
     var selectedItem: Int = 0
-    var nickName: String = "아무개"
+    var nickName: String = ""
     var gender: String = ""
     var age: Int = 0
-    var height: Double = 0.0
-    var weight: Double = 0.0
+    var height: Double = 0
+    var weight: Double = 0
     var today: String = ""
     var bmi: Double {
         return weight / (0.01 * height) / (0.01 * height)

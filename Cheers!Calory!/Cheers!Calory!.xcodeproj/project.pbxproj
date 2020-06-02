@@ -23,6 +23,8 @@
 		F454E89A2486324000BF1608 /* ColorZip.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454E8992486324000BF1608 /* ColorZip.swift */; };
 		F454E89C2486326F00BF1608 /* DAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454E89B2486326F00BF1608 /* DAO.swift */; };
 		F454E89E2486329300BF1608 /* Barcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454E89D2486329300BF1608 /* Barcode.swift */; };
+		F454E8A02486839900BF1608 /* SecondUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454E89F2486839900BF1608 /* SecondUserInfoViewController.swift */; };
+		F454E8A3248683D700BF1608 /* LastUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454E8A2248683D700BF1608 /* LastUserInfoViewController.swift */; };
 		F493A1AD24861E0100EA9B20 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F493A1AC24861E0100EA9B20 /* AppDelegate.swift */; };
 		F493A1B624861E0800EA9B20 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F493A1B524861E0800EA9B20 /* Assets.xcassets */; };
 		F493A1B924861E0800EA9B20 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F493A1B724861E0800EA9B20 /* LaunchScreen.storyboard */; };
@@ -47,6 +49,8 @@
 		F454E8992486324000BF1608 /* ColorZip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorZip.swift; sourceTree = "<group>"; };
 		F454E89B2486326F00BF1608 /* DAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DAO.swift; sourceTree = "<group>"; };
 		F454E89D2486329300BF1608 /* Barcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Barcode.swift; sourceTree = "<group>"; };
+		F454E89F2486839900BF1608 /* SecondUserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondUserInfoViewController.swift; sourceTree = "<group>"; };
+		F454E8A2248683D700BF1608 /* LastUserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastUserInfoViewController.swift; sourceTree = "<group>"; };
 		F493A1A924861E0100EA9B20 /* Cheers!Calory!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cheers!Calory!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F493A1AC24861E0100EA9B20 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F493A1B524861E0800EA9B20 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -149,6 +153,8 @@
 			isa = PBXGroup;
 			children = (
 				F454E882248622BC00BF1608 /* FirstUserInfoViewController.swift */,
+				F454E89F2486839900BF1608 /* SecondUserInfoViewController.swift */,
+				F454E8A2248683D700BF1608 /* LastUserInfoViewController.swift */,
 			);
 			path = Form;
 			sourceTree = "<group>";
@@ -345,6 +351,7 @@
 				F454E88E2486243D00BF1608 /* CameraViewController.swift in Sources */,
 				F454E883248622BC00BF1608 /* FirstUserInfoViewController.swift in Sources */,
 				F454E8982486321A00BF1608 /* UserInfo.swift in Sources */,
+				F454E8A3248683D700BF1608 /* LastUserInfoViewController.swift in Sources */,
 				F454E87E2486221200BF1608 /* DailyViewController.swift in Sources */,
 				F454E89E2486329300BF1608 /* Barcode.swift in Sources */,
 				F454E88C2486242C00BF1608 /* SearchViewController.swift in Sources */,
@@ -353,6 +360,7 @@
 				F454E873248620B800BF1608 /* SetRootViewController.swift in Sources */,
 				F454E8772486210600BF1608 /* Extensions.swift in Sources */,
 				F454E8802486222100BF1608 /* ReportViewController.swift in Sources */,
+				F454E8A02486839900BF1608 /* SecondUserInfoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,6 +500,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G4MM77V7NH;
 				INFOPLIST_FILE = "Cheers!Calory!/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -511,6 +520,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G4MM77V7NH;
 				INFOPLIST_FILE = "Cheers!Calory!/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
