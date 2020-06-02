@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>524500385871-hqk6k4hhtn36hgj969k8s59e1e4ul2c6.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.524500385871-hqk6k4hhtn36hgj969k8s59e1e4ul2c6</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBbdfnoOoeJ-RLd7bNp5c9TQT9e3ajtyQM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>524500385871</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.fastcampus.swift.sandman77.Cheers-Calory-</string>
+	<key>PROJECT_ID</key>
+	<string>cheers-calory</string>
+	<key>STORAGE_BUCKET</key>
+	<string>cheers-calory.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:524500385871:ios:773f26f9230ed4f5c72a3a</string>
+	<key>DATABASE_URL</key>
+	<string>https://cheers-calory.firebaseio.com</string>
+</dict>
+</plist>
