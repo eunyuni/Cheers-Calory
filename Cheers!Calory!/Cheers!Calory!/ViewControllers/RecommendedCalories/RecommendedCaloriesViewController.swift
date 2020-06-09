@@ -17,6 +17,7 @@ class RecommendedCaloriesViewController: UIViewController {
 //  private let caloryView1 = CaloryView()
   
   // 수정 테스트~~
+  // 풀리퀘테스트염
   
   
   // MARK: -Lift cycle
