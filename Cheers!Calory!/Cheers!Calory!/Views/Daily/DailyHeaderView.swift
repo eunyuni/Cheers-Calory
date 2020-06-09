@@ -12,7 +12,7 @@ class DailyHeaderView: UIView {
     
     // MARK: -Property
     let label = UILabel()
-    let totalCal = UserDefaults.standard.integer(forKey: Date.dateFormatting(yyyyMMDD: "yyyyMMdd"))
+    let totalCal = UserDefaults.standard.integer(forKey: Date.dateFormatting(yyyyMMDD: "yyyyMMdd") + "kcal")
     
     // MARK: -init
     override init(frame: CGRect) {
