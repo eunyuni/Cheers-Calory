@@ -47,7 +47,7 @@ class DAO {
         }
         
         let searchVC = SearchViewController()
-//        searchVC.tableView.reloadData()
+        searchVC.tableView.reloadData()
     }
 }
 

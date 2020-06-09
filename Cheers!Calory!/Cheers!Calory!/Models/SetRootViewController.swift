@@ -20,7 +20,7 @@ func setRootView(window: UIWindow) {
     let record = UINavigationController(rootViewController: ReportViewController())
     
     main.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 0)
-    daily.tabBarItem = UITabBarItem(tabBarSystemItem: .recents, tag: 1)
+    daily.tabBarItem = UITabBarItem(tabBarSystemItem: .downloads, tag: 1)
     record.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 2)
     
     let tabBarList = [main, daily, record]
