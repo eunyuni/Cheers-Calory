@@ -40,6 +40,7 @@ class DailyViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tableView.reloadData()
+        // 여기서 데이터 저장
     }
     
     private func setTableView() {
@@ -196,19 +197,19 @@ extension DailyViewController: UITableViewDataSource, UITableViewDelegate {
             case 0:
 //                todayCalory -= Int(DailyIntake.shared.breakfast[indexPath.row].calory)
                 let intCalory = DailyIntake.shared.breakfast[indexPath.row].calory.trimmingCharacters(in: [" "])
-                todayCalory -= Int(intCalory) ?? 0
+                DailyIntake.shared.totalCalory -= Int(intCalory) ?? 0
                 DailyIntake.shared.breakfast.remove(at: indexPath.row)
             case 1:
                 let intCalory = DailyIntake.shared.lunch[indexPath.row].calory.trimmingCharacters(in: [" "])
-                todayCalory -= Int(intCalory) ?? 0
+                DailyIntake.shared.totalCalory -= Int(intCalory) ?? 0
                 DailyIntake.shared.lunch.remove(at: indexPath.row)
             case 2:
                 let intCalory = DailyIntake.shared.dinner[indexPath.row].calory.trimmingCharacters(in: [" "])
-                todayCalory -= Int(intCalory) ?? 0
+                DailyIntake.shared.totalCalory -= Int(intCalory) ?? 0
                 DailyIntake.shared.dinner.remove(at: indexPath.row)
             case 3:
                 let intCalory = DailyIntake.shared.snack[indexPath.row].calory.trimmingCharacters(in: [" "])
-                todayCalory -= Int(intCalory) ?? 0
+                DailyIntake.shared.totalCalory -= Int(intCalory) ?? 0
                 DailyIntake.shared.snack.remove(at: indexPath.row)
             default:
                 break
@@ -216,7 +217,7 @@ extension DailyViewController: UITableViewDataSource, UITableViewDelegate {
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
         UserDefaults.standard.set(todayCalory, forKey: Date.dateFormatting(yyyyMMDD: "yyyyMMdd"))
-        self.totalCalory = todayCalory
+        self.totalCalory = DailyIntake.shared.totalCalory
         tableView.reloadData()
     }
     
