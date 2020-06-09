@@ -189,34 +189,30 @@ extension DailyViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        var todayCalory = UserDefaults.standard.integer(forKey: Date.dateFormatting(yyyyMMDD: "yyyyMMdd"))
-        
-        
+
         if editingStyle == .delete {
             switch indexPath.section {
             case 0:
-//                todayCalory -= Int(DailyIntake.shared.breakfast[indexPath.row].calory)
-                let intCalory = DailyIntake.shared.breakfast[indexPath.row].calory.trimmingCharacters(in: [" "])
-                DailyIntake.shared.totalCalory -= Int(intCalory) ?? 0
+                let convertedCalory = DailyIntake.shared.breakfast[indexPath.row].calory.trimmingCharacters(in: [" "])
+                DailyIntake.shared.totalCalory -= Int(convertedCalory) ?? 0
                 DailyIntake.shared.breakfast.remove(at: indexPath.row)
             case 1:
-                let intCalory = DailyIntake.shared.lunch[indexPath.row].calory.trimmingCharacters(in: [" "])
-                DailyIntake.shared.totalCalory -= Int(intCalory) ?? 0
+                let convertedCalory = DailyIntake.shared.lunch[indexPath.row].calory.trimmingCharacters(in: [" "])
+                DailyIntake.shared.totalCalory -= Int(convertedCalory) ?? 0
                 DailyIntake.shared.lunch.remove(at: indexPath.row)
             case 2:
-                let intCalory = DailyIntake.shared.dinner[indexPath.row].calory.trimmingCharacters(in: [" "])
-                DailyIntake.shared.totalCalory -= Int(intCalory) ?? 0
+                let convertedCalory = DailyIntake.shared.dinner[indexPath.row].calory.trimmingCharacters(in: [" "])
+                DailyIntake.shared.totalCalory -= Int(convertedCalory) ?? 0
                 DailyIntake.shared.dinner.remove(at: indexPath.row)
             case 3:
-                let intCalory = DailyIntake.shared.snack[indexPath.row].calory.trimmingCharacters(in: [" "])
-                DailyIntake.shared.totalCalory -= Int(intCalory) ?? 0
+                let convertedCalory = DailyIntake.shared.snack[indexPath.row].calory.trimmingCharacters(in: [" "])
+                DailyIntake.shared.totalCalory -= Int(convertedCalory) ?? 0
                 DailyIntake.shared.snack.remove(at: indexPath.row)
             default:
                 break
             }
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
-        UserDefaults.standard.set(todayCalory, forKey: Date.dateFormatting(yyyyMMDD: "yyyyMMdd"))
         self.totalCalory = DailyIntake.shared.totalCalory
         tableView.reloadData()
     }
