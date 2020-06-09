@@ -9,22 +9,57 @@
 import UIKit
 
 class RecommendedCaloriesViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
+  
+  // MARK: -Property
+  private let mainView = RecommendedMainView()
+  private let bodyView = RecommendedBodyView()
+//  private let bottomView = RecommendedBottomView()
+//  private let caloryView1 = CaloryView()
+  // MARK: -Lift cycle
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    self.navigationController?.isNavigationBarHidden = true
+  }
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+//    caloryView1.configue(backColor: ColorZip.morning)
+    setupUI()
+  }
+  
+  // MARK: -Action
+  
+  
+  // MARK: -setupUI
+  private func setupUI() {
+    view.addSubviews([mainView, bodyView])
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    
+    setupConstraint()
+  }
+  
+  // MARK: -setupConstraint
+  
+  private func setupConstraint() {
+    mainView.snp.makeConstraints {
+      $0.top.trailing.leading.equalToSuperview()
+      $0.height.equalTo(CGFloat.dynamicYMargin(margin: 230))
     }
-    */
-
+    bodyView.snp.makeConstraints {
+      $0.top.equalTo(mainView.snp.bottom)
+      $0.trailing.leading.equalToSuperview()
+      $0.height.equalTo(CGFloat.dynamicYMargin(margin: 230))
+    }
+//    bottomView.snp.makeConstraints {
+//      $0.top.equalTo(bottomView.snp.bottom)
+//      $0.trailing.leading.bottom.equalToSuperview()
+//    }
+//    caloryView1.snp.makeConstraints {
+//      $0.top.equalTo(bodyView.snp.bottom).offset(20)
+//      $0.leading.equalToSuperview().offset(20)
+//    }
+  }
+  
 }

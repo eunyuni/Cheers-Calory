@@ -197,14 +197,17 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         
         dailyVC.tableView.reloadData()
         
-        
         // 오늘 먹은 칼로리 합산 기능 같은데, 수정 해야 할 듯
         var todayCalory = UserDefaults.standard.integer(forKey: Date.dateFormatting(yyyyMMDD: "yyyyMMdd"))
         let convertedCalory = food.calory.trimmingCharacters(in: [" "])
         
-        todayCalory += Int(convertedCalory) ?? 0
-        dailyVC.totalCalory = todayCalory
+//        todayCalory += Int(convertedCalory) ?? 0
+        
+        DailyIntake.shared.totalCalory += Int(convertedCalory) ?? 0
+        dailyVC.totalCalory = DailyIntake.shared.totalCalory
         UserDefaults.standard.set(todayCalory, forKey: Date.dateFormatting(yyyyMMDD: "yyyyMMdd"))
+        
+        
     }
     
 }
