@@ -76,33 +76,35 @@ class DailyViewController: UIViewController {
     }
     
     private func setDatasource() {
-        if let x = UserDefaults.standard.object(forKey: "breakfast") as? Data {
-            if let loaded = try? JSONDecoder().decode([Food].self, from: x) {
-                dump(loaded)
-                DailyIntake.shared.breakfast = loaded
-            }
-        }
         
-        if let x = UserDefaults.standard.object(forKey: "lunch") as? Data {
-            if let loaded = try? JSONDecoder().decode([Food].self, from: x) {
-                dump(loaded)
-                DailyIntake.shared.lunch = loaded
-            }
-        }
-        
-        if let x = UserDefaults.standard.object(forKey: "dinner") as? Data {
-            if let loaded = try? JSONDecoder().decode([Food].self, from: x) {
-                dump(loaded)
-                DailyIntake.shared.dinner = loaded
-            }
-        }
-        
-        if let x = UserDefaults.standard.object(forKey: "snack") as? Data {
-            if let loaded = try? JSONDecoder().decode([Food].self, from: x) {
-                dump(loaded)
-                DailyIntake.shared.snack = loaded
-            }
-        }
+        // 날짜로 구분해서 오늘인 DailyIntake만 빼와서 뿌리기
+//        if let x = UserDefaults.standard.object(forKey: "breakfast") as? Data {
+//            if let loaded = try? JSONDecoder().decode([Food].self, from: x) {
+//                dump(loaded)
+//                DailyIntake.shared.breakfast = loaded
+//            }
+//        }
+//
+//        if let x = UserDefaults.standard.object(forKey: "lunch") as? Data {
+//            if let loaded = try? JSONDecoder().decode([Food].self, from: x) {
+//                dump(loaded)
+//                DailyIntake.shared.lunch = loaded
+//            }
+//        }
+//
+//        if let x = UserDefaults.standard.object(forKey: "dinner") as? Data {
+//            if let loaded = try? JSONDecoder().decode([Food].self, from: x) {
+//                dump(loaded)
+//                DailyIntake.shared.dinner = loaded
+//            }
+//        }
+//
+//        if let x = UserDefaults.standard.object(forKey: "snack") as? Data {
+//            if let loaded = try? JSONDecoder().decode([Food].self, from: x) {
+//                dump(loaded)
+//                DailyIntake.shared.snack = loaded
+//            }
+//        }
         self.tableView.reloadData()
     }
 }
@@ -114,16 +116,26 @@ extension DailyViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case 0:
-            return DailyIntake.shared.breakfast.count
-        case 1:
-            return DailyIntake.shared.lunch.count
-        case 2:
-            return DailyIntake.shared.dinner.count
-        case 3:
-            return DailyIntake.shared.snack.count
-        default:
-            return 0
+//        case 0:
+//            return DailyIntake.shared.breakfast.count
+//        case 1:
+//            return DailyIntake.shared.lunch.count
+//        case 2:
+//            return DailyIntake.shared.dinner.count
+//        case 3:
+//            return DailyIntake.shared.snack.count
+//        default:
+//            return 0
+            case 0:
+                return DailyIntakeDB.shared.todayIntake?.breakfast.count ?? 0
+            case 1:
+                return DailyIntakeDB.shared.todayIntake?.lunch.count ?? 0
+            case 2:
+                return DailyIntakeDB.shared.todayIntake?.dinner.count ?? 0
+            case 3:
+                return DailyIntakeDB.shared.todayIntake?.snack.count ?? 0
+            default:
+                return 0
         }
     }
     
@@ -135,24 +147,43 @@ extension DailyViewController: UITableViewDataSource, UITableViewDelegate {
         var calory = ""
         
         switch indexPath.section {
-        case 0:
-            name = DailyIntake.shared.breakfast[indexPath.row].foodName
-            base = DailyIntake.shared.breakfast[indexPath.row].servingSize
-            calory = DailyIntake.shared.breakfast[indexPath.row].calory
-        case 1:
-            name = DailyIntake.shared.lunch[indexPath.row].foodName
-            base = DailyIntake.shared.lunch[indexPath.row].servingSize
-            calory = DailyIntake.shared.lunch[indexPath.row].calory
-        case 2:
-            name = DailyIntake.shared.dinner[indexPath.row].foodName
-            base = DailyIntake.shared.dinner[indexPath.row].servingSize
-            calory = DailyIntake.shared.dinner[indexPath.row].calory
-        case 3:
-            name = DailyIntake.shared.snack[indexPath.row].foodName
-            base = DailyIntake.shared.snack[indexPath.row].servingSize
-            calory = DailyIntake.shared.snack[indexPath.row].calory
-        default:
-            break
+            case 0:
+                name = DailyIntakeDB.shared.todayIntake?.breakfast[indexPath.row].foodName as! String
+                base = DailyIntakeDB.shared.todayIntake?.breakfast[indexPath.row].servingSize as! String
+                calory = DailyIntakeDB.shared.todayIntake?.breakfast[indexPath.row].calory as! String
+            case 1:
+                name = DailyIntakeDB.shared.todayIntake?.lunch[indexPath.row].foodName as! String
+                base = DailyIntakeDB.shared.todayIntake?.lunch[indexPath.row].servingSize as! String
+                calory = DailyIntakeDB.shared.todayIntake?.lunch[indexPath.row].calory as! String
+            case 2:
+                name = DailyIntakeDB.shared.todayIntake?.dinner[indexPath.row].foodName as! String
+                base = DailyIntakeDB.shared.todayIntake?.dinner[indexPath.row].servingSize as! String
+                calory = DailyIntakeDB.shared.todayIntake?.dinner[indexPath.row].calory as! String
+            case 3:
+                name = DailyIntakeDB.shared.todayIntake?.snack[indexPath.row].foodName as! String
+                base = DailyIntakeDB.shared.todayIntake?.snack[indexPath.row].servingSize as! String
+                calory = DailyIntakeDB.shared.todayIntake?.snack[indexPath.row].calory as! String
+            default:
+                break
+
+//        case 0:
+//            name = DailyIntake.shared.breakfast[indexPath.row].foodName
+//            base = DailyIntake.shared.breakfast[indexPath.row].servingSize
+//            calory = DailyIntake.shared.breakfast[indexPath.row].calory
+//        case 1:
+//            name = DailyIntake.shared.lunch[indexPath.row].foodName
+//            base = DailyIntake.shared.lunch[indexPath.row].servingSize
+//            calory = DailyIntake.shared.lunch[indexPath.row].calory
+//        case 2:
+//            name = DailyIntake.shared.dinner[indexPath.row].foodName
+//            base = DailyIntake.shared.dinner[indexPath.row].servingSize
+//            calory = DailyIntake.shared.dinner[indexPath.row].calory
+//        case 3:
+//            name = DailyIntake.shared.snack[indexPath.row].foodName
+//            base = DailyIntake.shared.snack[indexPath.row].servingSize
+//            calory = DailyIntake.shared.snack[indexPath.row].calory
+//        default:
+//            break
         }
         cell.foodName.text = name
         cell.foodBase.text = "\(base)(g)"

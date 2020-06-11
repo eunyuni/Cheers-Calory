@@ -25,6 +25,7 @@ class SearchViewController: UIViewController {
     private let searchController = UISearchController(searchResultsController: nil)
     let tableView = UITableView()
     
+    private var dailyCaloric = DailyCaloricIntake()
     private var data = [Food]()
     private var filteredDatas = [Food]()
     
@@ -94,8 +95,8 @@ class SearchViewController: UIViewController {
     }
     
     @objc private func goBack(_ sender: UIBarButtonItem) {
-           dismiss(animated: true)
-       }
+        dismiss(animated: true)
+    }
     
     @objc private func tapBarcodeBtn(_ sender: UIBarButtonItem) {
         let camVC = CameraViewController()
@@ -180,14 +181,24 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             food = data[indexPath.row]
         }
-        
-        switch self.section {
-        case 0: DailyIntake.shared.breakfast.append(food)
-        case 1: DailyIntake.shared.lunch.append(food)
-        case 2: DailyIntake.shared.dinner.append(food)
-        case 3: DailyIntake.shared.snack.append(food)
-        default: print("안됨")
+    
+        // 날짜가 오늘인 intake 배열의 객체
+        guard DailyIntakeDB.shared.todayIntake = dailyCaloric else { return }
+        if todayIntake.today == Date.dateFormatting(yyyyMMDD: "yyyyMMdd") {
+            switch self.section {
+                //        case 0: DailyIntake.shared.breakfast.append(food)
+                //        case 1: DailyIntake.shared.lunch.append(food)
+                //        case 2: DailyIntake.shared.dinner.append(food)
+                //        case 3: DailyIntake.shared.snack.append(food)
+            //        default: print("안됨")
+            case 0: todayIntake.breakfast.append(food)
+            case 1: todayIntake.lunch.append(food)
+            case 2: todayIntake.dinner.append(food)
+            case 3: todayIntake.snack.append(food)
+            default: print("안됨")
+            }
         }
+        
         
         if isFiltering {
             self.presentingViewController?.dismiss(animated: true)
@@ -200,8 +211,13 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         // 오늘 먹은 칼로리 합산 기능 같은데, 수정 해야 할 듯
         let convertedCalory = food.calory.trimmingCharacters(in: [" "])
         
-        DailyIntake.shared.totalCalory += Int(convertedCalory) ?? 0
-        dailyVC.totalCalory = DailyIntake.shared.totalCalory
+//        DailyIntake.shared.totalCalory += Int(convertedCalory) ?? 0
+//        dailyVC.totalCalory = DailyIntake.shared.totalCalory
+        dailyCaloric.totalCalory += Int(convertedCalory) ?? 0
+        dailyVC.totalCalory = dailyCaloric.totalCalory
+        
+        
+        print(todayIntake)
     }
     
 }
