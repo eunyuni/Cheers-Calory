@@ -20,7 +20,7 @@ func setRootView(window: UIWindow) {
     let record = UINavigationController(rootViewController: ReportViewController())
     
     main.tabBarItem = UITabBarItem(title: "Info", image: UIImage(named: "InfoIcon"), tag: 0)
-    daily.tabBarItem = UITabBarItem(title: "Kcal", image: UIImage(named: "maths"), tag: 1)
+    daily.tabBarItem = UITabBarItem(title: "Kcal", image: UIImage(named: "Kcal"), tag: 1)
     record.tabBarItem = UITabBarItem(title: "Report", image: UIImage(named: "history"), tag: 2)
     
     UITabBar.appearance().tintColor = ColorZip.purple
