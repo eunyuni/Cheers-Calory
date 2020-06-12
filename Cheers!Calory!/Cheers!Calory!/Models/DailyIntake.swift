@@ -16,6 +16,7 @@ struct DailyIntake {
     var lunch: [Food] = [] { didSet { UserDefaults.standard.set(try? JSONEncoder().encode(lunch), forKey: "lunch") }}
     var dinner: [Food] = [] { didSet { UserDefaults.standard.set(try? JSONEncoder().encode(dinner), forKey: "dinner") }}
     var snack: [Food] = [] { didSet { UserDefaults.standard.set(try? JSONEncoder().encode(snack), forKey: "snack") }}
+    
     var totalCalory: Int = UserDefaults.standard.integer(forKey: Date.dateFormatting(yyyyMMDD: "yyyyMMdd") + "kcal") { didSet {UserDefaults.standard.set(totalCalory, forKey: Date.dateFormatting(yyyyMMDD: "yyyyMMdd") + "kcal")}}
     
 //    var dailyTotal = [DailyIntake]()

@@ -76,6 +76,10 @@ class DailyViewController: UIViewController {
     }
     
     private func setDatasource() {
+//        guard let data = UserDefaults.standard.data(forKey: "DB") else { return }
+//        if let dailyIntake = try? JSONDecoder().decode([DailyCaloricIntake].self, from: data) {
+//            DailyIntakeDB.shared.dailyCaloricIntakeArray = dailyIntake
+//        }
         
         // 날짜로 구분해서 오늘인 DailyIntake만 빼와서 뿌리기
 //        if let x = UserDefaults.standard.object(forKey: "breakfast") as? Data {
@@ -116,24 +120,14 @@ extension DailyViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-//        case 0:
-//            return DailyIntake.shared.breakfast.count
-//        case 1:
-//            return DailyIntake.shared.lunch.count
-//        case 2:
-//            return DailyIntake.shared.dinner.count
-//        case 3:
-//            return DailyIntake.shared.snack.count
-//        default:
-//            return 0
             case 0:
-                return DailyIntakeDB.shared.todayIntake?.breakfast.count ?? 0
+                return DailyIntakeDB.shared.dailyCaloricIntakeArray.last?.breakfast.count ?? 0
             case 1:
-                return DailyIntakeDB.shared.todayIntake?.lunch.count ?? 0
+                return DailyIntakeDB.shared.dailyCaloricIntakeArray.last?.lunch.count ?? 0
             case 2:
-                return DailyIntakeDB.shared.todayIntake?.dinner.count ?? 0
+                return DailyIntakeDB.shared.dailyCaloricIntakeArray.last?.dinner.count ?? 0
             case 3:
-                return DailyIntakeDB.shared.todayIntake?.snack.count ?? 0
+                return DailyIntakeDB.shared.dailyCaloricIntakeArray.last?.snack.count ?? 0
             default:
                 return 0
         }
@@ -148,43 +142,25 @@ extension DailyViewController: UITableViewDataSource, UITableViewDelegate {
         
         switch indexPath.section {
             case 0:
-                name = DailyIntakeDB.shared.todayIntake?.breakfast[indexPath.row].foodName as! String
-                base = DailyIntakeDB.shared.todayIntake?.breakfast[indexPath.row].servingSize as! String
-                calory = DailyIntakeDB.shared.todayIntake?.breakfast[indexPath.row].calory as! String
+                name =  DailyIntakeDB.shared.dailyCaloricIntakeArray[DailyIntakeDB.shared.dailyCaloricIntakeArray.endIndex - 1].breakfast[indexPath.row].foodName
+                base =  DailyIntakeDB.shared.dailyCaloricIntakeArray[DailyIntakeDB.shared.dailyCaloricIntakeArray.endIndex - 1].breakfast[indexPath.row].servingSize
+                calory =  DailyIntakeDB.shared.dailyCaloricIntakeArray[DailyIntakeDB.shared.dailyCaloricIntakeArray.endIndex - 1].breakfast[indexPath.row].calory
             case 1:
-                name = DailyIntakeDB.shared.todayIntake?.lunch[indexPath.row].foodName as! String
-                base = DailyIntakeDB.shared.todayIntake?.lunch[indexPath.row].servingSize as! String
-                calory = DailyIntakeDB.shared.todayIntake?.lunch[indexPath.row].calory as! String
+                name =  DailyIntakeDB.shared.dailyCaloricIntakeArray[DailyIntakeDB.shared.dailyCaloricIntakeArray.endIndex - 1].lunch[indexPath.row].foodName
+                base =  DailyIntakeDB.shared.dailyCaloricIntakeArray[DailyIntakeDB.shared.dailyCaloricIntakeArray.endIndex - 1].lunch[indexPath.row].servingSize
+                calory =  DailyIntakeDB.shared.dailyCaloricIntakeArray[DailyIntakeDB.shared.dailyCaloricIntakeArray.endIndex - 1].lunch[indexPath.row].calory
             case 2:
-                name = DailyIntakeDB.shared.todayIntake?.dinner[indexPath.row].foodName as! String
-                base = DailyIntakeDB.shared.todayIntake?.dinner[indexPath.row].servingSize as! String
-                calory = DailyIntakeDB.shared.todayIntake?.dinner[indexPath.row].calory as! String
+                name =  DailyIntakeDB.shared.dailyCaloricIntakeArray[DailyIntakeDB.shared.dailyCaloricIntakeArray.endIndex - 1].dinner[indexPath.row].foodName
+                base =  DailyIntakeDB.shared.dailyCaloricIntakeArray[DailyIntakeDB.shared.dailyCaloricIntakeArray.endIndex - 1].dinner[indexPath.row].servingSize
+                calory =  DailyIntakeDB.shared.dailyCaloricIntakeArray[DailyIntakeDB.shared.dailyCaloricIntakeArray.endIndex - 1].dinner[indexPath.row].calory
             case 3:
-                name = DailyIntakeDB.shared.todayIntake?.snack[indexPath.row].foodName as! String
-                base = DailyIntakeDB.shared.todayIntake?.snack[indexPath.row].servingSize as! String
-                calory = DailyIntakeDB.shared.todayIntake?.snack[indexPath.row].calory as! String
+                name =  DailyIntakeDB.shared.dailyCaloricIntakeArray[DailyIntakeDB.shared.dailyCaloricIntakeArray.endIndex - 1].snack[indexPath.row].foodName
+                base =  DailyIntakeDB.shared.dailyCaloricIntakeArray[DailyIntakeDB.shared.dailyCaloricIntakeArray.endIndex - 1].snack[indexPath.row].servingSize
+                calory =  DailyIntakeDB.shared.dailyCaloricIntakeArray[DailyIntakeDB.shared.dailyCaloricIntakeArray.endIndex - 1].snack[indexPath.row].calory
             default:
                 break
-
-//        case 0:
-//            name = DailyIntake.shared.breakfast[indexPath.row].foodName
-//            base = DailyIntake.shared.breakfast[indexPath.row].servingSize
-//            calory = DailyIntake.shared.breakfast[indexPath.row].calory
-//        case 1:
-//            name = DailyIntake.shared.lunch[indexPath.row].foodName
-//            base = DailyIntake.shared.lunch[indexPath.row].servingSize
-//            calory = DailyIntake.shared.lunch[indexPath.row].calory
-//        case 2:
-//            name = DailyIntake.shared.dinner[indexPath.row].foodName
-//            base = DailyIntake.shared.dinner[indexPath.row].servingSize
-//            calory = DailyIntake.shared.dinner[indexPath.row].calory
-//        case 3:
-//            name = DailyIntake.shared.snack[indexPath.row].foodName
-//            base = DailyIntake.shared.snack[indexPath.row].servingSize
-//            calory = DailyIntake.shared.snack[indexPath.row].calory
-//        default:
-//            break
         }
+        
         cell.foodName.text = name
         cell.foodBase.text = "\(base)(g)"
         
@@ -220,34 +196,39 @@ extension DailyViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-
         if editingStyle == .delete {
             switch indexPath.section {
             case 0:
-                let convertedCalory = DailyIntake.shared.breakfast[indexPath.row].calory.trimmingCharacters(in: [" "])
-                DailyIntake.shared.totalCalory -= Int(convertedCalory) ?? 0
-                DailyIntake.shared.breakfast.remove(at: indexPath.row)
+                let convertedCalory =  DailyIntakeDB.shared.dailyCaloricIntakeArray[DailyIntakeDB.shared.dailyCaloricIntakeArray.endIndex - 1].breakfast[indexPath.row].calory.trimmingCharacters(in: [" "])
+                 DailyIntakeDB.shared.dailyCaloricIntakeArray[DailyIntakeDB.shared.dailyCaloricIntakeArray.endIndex - 1].totalCalory -= Int(convertedCalory) ?? 0
+                DailyCaloricIntake.shared.breakfast.remove(at: indexPath.row)
+                DailyIntakeDB.shared.dailyCaloricIntakeArray[DailyIntakeDB.shared.dailyCaloricIntakeArray.endIndex - 1].breakfast.remove(at: indexPath.row)
             case 1:
-                let convertedCalory = DailyIntake.shared.lunch[indexPath.row].calory.trimmingCharacters(in: [" "])
-                DailyIntake.shared.totalCalory -= Int(convertedCalory) ?? 0
-                DailyIntake.shared.lunch.remove(at: indexPath.row)
+                let convertedCalory =  DailyIntakeDB.shared.dailyCaloricIntakeArray[DailyIntakeDB.shared.dailyCaloricIntakeArray.endIndex - 1].lunch[indexPath.row].calory.trimmingCharacters(in: [" "])
+                 DailyIntakeDB.shared.dailyCaloricIntakeArray[DailyIntakeDB.shared.dailyCaloricIntakeArray.endIndex - 1].totalCalory -= Int(convertedCalory) ?? 0
+                DailyCaloricIntake.shared.lunch.remove(at: indexPath.row)
+                 DailyIntakeDB.shared.dailyCaloricIntakeArray[DailyIntakeDB.shared.dailyCaloricIntakeArray.endIndex - 1].lunch.remove(at: indexPath.row)
             case 2:
-                let convertedCalory = DailyIntake.shared.dinner[indexPath.row].calory.trimmingCharacters(in: [" "])
-                DailyIntake.shared.totalCalory -= Int(convertedCalory) ?? 0
-                DailyIntake.shared.dinner.remove(at: indexPath.row)
+                let convertedCalory =  DailyIntakeDB.shared.dailyCaloricIntakeArray[DailyIntakeDB.shared.dailyCaloricIntakeArray.endIndex - 1].dinner[indexPath.row].calory.trimmingCharacters(in: [" "])
+                 DailyIntakeDB.shared.dailyCaloricIntakeArray[DailyIntakeDB.shared.dailyCaloricIntakeArray.endIndex - 1].totalCalory -= Int(convertedCalory) ?? 0
+                DailyCaloricIntake.shared.dinner.remove(at: indexPath.row)
+                 DailyIntakeDB.shared.dailyCaloricIntakeArray[DailyIntakeDB.shared.dailyCaloricIntakeArray.endIndex - 1].dinner.remove(at: indexPath.row)
             case 3:
-                let convertedCalory = DailyIntake.shared.snack[indexPath.row].calory.trimmingCharacters(in: [" "])
-                DailyIntake.shared.totalCalory -= Int(convertedCalory) ?? 0
-                DailyIntake.shared.snack.remove(at: indexPath.row)
+                let convertedCalory =  DailyIntakeDB.shared.dailyCaloricIntakeArray[DailyIntakeDB.shared.dailyCaloricIntakeArray.endIndex - 1].snack[indexPath.row].calory.trimmingCharacters(in: [" "])
+                 DailyIntakeDB.shared.dailyCaloricIntakeArray[DailyIntakeDB.shared.dailyCaloricIntakeArray.endIndex - 1].totalCalory -= Int(convertedCalory) ?? 0
+                DailyCaloricIntake.shared.snack.remove(at: indexPath.row)
+                 DailyIntakeDB.shared.dailyCaloricIntakeArray[DailyIntakeDB.shared.dailyCaloricIntakeArray.endIndex - 1].snack.remove(at: indexPath.row)
             default:
                 break
             }
+            print( DailyIntakeDB.shared.dailyCaloricIntakeArray[DailyIntakeDB.shared.dailyCaloricIntakeArray.endIndex - 1])
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
-        self.totalCalory = DailyIntake.shared.totalCalory
+        self.totalCalory =  DailyIntakeDB.shared.dailyCaloricIntakeArray[DailyIntakeDB.shared.dailyCaloricIntakeArray.endIndex - 1].totalCalory
         tableView.reloadData()
     }
     
+    // 수정
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var base = ""
         

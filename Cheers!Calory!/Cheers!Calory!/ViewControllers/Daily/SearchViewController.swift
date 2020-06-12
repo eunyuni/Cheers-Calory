@@ -25,7 +25,7 @@ class SearchViewController: UIViewController {
     private let searchController = UISearchController(searchResultsController: nil)
     let tableView = UITableView()
     
-    private var dailyCaloric = DailyCaloricIntake()
+//    private var dailyCaloric = DailyCaloricIntake()
     private var data = [Food]()
     private var filteredDatas = [Food]()
     
@@ -106,6 +106,21 @@ class SearchViewController: UIViewController {
 }
 
 extension SearchViewController {
+    private func selectDailyCalorieIntake() {
+        // 비어있으면, today에 넣어줌
+        if DailyIntakeDB.shared.dailyCaloricIntakeArray.count == 0 {
+            DailyIntakeDB.shared.dailyCaloricIntakeArray.append(DailyCaloricIntake.shared)
+        } else {
+            // 비어있지 않다면, 마지막꺼가 오늘날짜인지 확인하고, 아니면 어펜드 해주고, 맞으면 수정
+            if DailyIntakeDB.shared.dailyCaloricIntakeArray[DailyIntakeDB.shared.dailyCaloricIntakeArray.endIndex - 1].today == Date.dateFormatting(yyyyMMDD: "yyyyMMdd") {
+                DailyIntakeDB.shared.dailyCaloricIntakeArray[DailyIntakeDB.shared.dailyCaloricIntakeArray.endIndex - 1] = DailyCaloricIntake.shared
+            } else {
+                print("저기")
+                DailyIntakeDB.shared.dailyCaloricIntakeArray.append(DailyCaloricIntake.shared)
+            }
+        }
+    }
+    
     private func filterContentForSearchText(searchText: String) {
         filteredDatas = data.filter { (food: Food) -> Bool in
             return food.foodName.contains(searchText)
@@ -132,6 +147,8 @@ extension SearchViewController {
             case 3: DailyIntake.shared.snack.append(food)
             default: print("안됨")
             }
+            
+            self.selectDailyCalorieIntake()
             
             dailyVC.tableView.reloadData()
             
@@ -182,23 +199,21 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             food = data[indexPath.row]
         }
     
-        // 날짜가 오늘인 intake 배열의 객체
-        guard DailyIntakeDB.shared.todayIntake = dailyCaloric else { return }
-        if todayIntake.today == Date.dateFormatting(yyyyMMDD: "yyyyMMdd") {
-            switch self.section {
-                //        case 0: DailyIntake.shared.breakfast.append(food)
-                //        case 1: DailyIntake.shared.lunch.append(food)
-                //        case 2: DailyIntake.shared.dinner.append(food)
-                //        case 3: DailyIntake.shared.snack.append(food)
-            //        default: print("안됨")
-            case 0: todayIntake.breakfast.append(food)
-            case 1: todayIntake.lunch.append(food)
-            case 2: todayIntake.dinner.append(food)
-            case 3: todayIntake.snack.append(food)
-            default: print("안됨")
-            }
+        // 비었는지 안비었는지 확인,
+        // 비었다면 하나 넣어줌
+        // 안비었다면 마지막 녀석의 날짜가 오늘 날짜와 같은지 확인
+        // 오늘 날짜와 같으면 마지막 녀석에 append
+        // 오늘 날짜와 같지 않으면 하나 추가해주고, today에 새로 할당
+        
+        switch self.section {
+        case 0: DailyCaloricIntake.shared.breakfast.append(food)
+        case 1: DailyCaloricIntake.shared.lunch.append(food)
+        case 2: DailyCaloricIntake.shared.dinner.append(food)
+        case 3: DailyCaloricIntake.shared.snack.append(food)
+        default: break
         }
         
+        selectDailyCalorieIntake()
         
         if isFiltering {
             self.presentingViewController?.dismiss(animated: true)
@@ -211,13 +226,10 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         // 오늘 먹은 칼로리 합산 기능 같은데, 수정 해야 할 듯
         let convertedCalory = food.calory.trimmingCharacters(in: [" "])
         
-//        DailyIntake.shared.totalCalory += Int(convertedCalory) ?? 0
-//        dailyVC.totalCalory = DailyIntake.shared.totalCalory
-        dailyCaloric.totalCalory += Int(convertedCalory) ?? 0
-        dailyVC.totalCalory = dailyCaloric.totalCalory
+        DailyCaloricIntake.shared.totalCalory += Int(convertedCalory) ?? 0
+        DailyIntakeDB.shared.dailyCaloricIntakeArray[DailyIntakeDB.shared.dailyCaloricIntakeArray.endIndex - 1].totalCalory = DailyCaloricIntake.shared.totalCalory
+        dailyVC.totalCalory = DailyCaloricIntake.shared.totalCalory
         
-        
-        print(todayIntake)
     }
     
 }

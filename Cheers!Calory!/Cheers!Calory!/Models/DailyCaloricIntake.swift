@@ -8,9 +8,11 @@
 
 import Foundation
 
-struct DailyCaloricIntake: Encodable {
+struct DailyCaloricIntake: Codable {
+    static var shared = DailyCaloricIntake()
+    private init() {}
     
-    let today = Date.dateFormatting(yyyyMMDD: "yyyyMMdd")
+    var today = Date.dateFormatting(yyyyMMDD: "yyyyMMdd")
     
     var breakfast = [Food]()
     var lunch = [Food]()
