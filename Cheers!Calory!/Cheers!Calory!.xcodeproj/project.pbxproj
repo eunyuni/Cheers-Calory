@@ -31,7 +31,6 @@
 		F454E8A3248683D700BF1608 /* LastUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454E8A2248683D700BF1608 /* LastUserInfoViewController.swift */; };
 		F46AEF162487C17400FE575F /* DailyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46AEF152487C17400FE575F /* DailyHeaderView.swift */; };
 		F46AEF182487C1D600FE575F /* DailyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46AEF172487C1D600FE575F /* DailyTableViewCell.swift */; };
-		F46AEF1A2487C47800FE575F /* DailyIntake.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46AEF192487C47800FE575F /* DailyIntake.swift */; };
 		F46AEF1C2487C8F000FE575F /* DailySectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46AEF1B2487C8F000FE575F /* DailySectionHeaderView.swift */; };
 		F4761E552491F62A001F3462 /* DailyCaloricIntake.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4761E542491F62A001F3462 /* DailyCaloricIntake.swift */; };
 		F4761E572492036E001F3462 /* DailyIntakeDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4761E562492036E001F3462 /* DailyIntakeDB.swift */; };
@@ -67,7 +66,6 @@
 		F454E8A2248683D700BF1608 /* LastUserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastUserInfoViewController.swift; sourceTree = "<group>"; };
 		F46AEF152487C17400FE575F /* DailyHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyHeaderView.swift; sourceTree = "<group>"; };
 		F46AEF172487C1D600FE575F /* DailyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTableViewCell.swift; sourceTree = "<group>"; };
-		F46AEF192487C47800FE575F /* DailyIntake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyIntake.swift; sourceTree = "<group>"; };
 		F46AEF1B2487C8F000FE575F /* DailySectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySectionHeaderView.swift; sourceTree = "<group>"; };
 		F4761E542491F62A001F3462 /* DailyCaloricIntake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCaloricIntake.swift; sourceTree = "<group>"; };
 		F4761E562492036E001F3462 /* DailyIntakeDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyIntakeDB.swift; sourceTree = "<group>"; };
@@ -108,7 +106,6 @@
 				F454E8992486324000BF1608 /* ColorZip.swift */,
 				F454E89B2486326F00BF1608 /* DAO.swift */,
 				F454E89D2486329300BF1608 /* Barcode.swift */,
-				F46AEF192487C47800FE575F /* DailyIntake.swift */,
 				F4761E542491F62A001F3462 /* DailyCaloricIntake.swift */,
 				F4761E562492036E001F3462 /* DailyIntakeDB.swift */,
 			);
@@ -385,7 +382,6 @@
 				F46AEF1C2487C8F000FE575F /* DailySectionHeaderView.swift in Sources */,
 				F4402F94248FBCB8006D5C80 /* RecommendedBottomView.swift in Sources */,
 				F454E883248622BC00BF1608 /* FirstUserInfoViewController.swift in Sources */,
-				F46AEF1A2487C47800FE575F /* DailyIntake.swift in Sources */,
 				F454E8982486321A00BF1608 /* UserInfo.swift in Sources */,
 				F454E8A3248683D700BF1608 /* LastUserInfoViewController.swift in Sources */,
 				F454E87E2486221200BF1608 /* DailyViewController.swift in Sources */,

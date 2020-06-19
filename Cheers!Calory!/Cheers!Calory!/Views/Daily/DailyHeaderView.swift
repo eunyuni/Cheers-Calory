@@ -31,7 +31,7 @@ class DailyHeaderView: UIView {
         
         self.addSubview(label)
         label.font = .systemFont(ofSize: 30, weight: .bold)
-        self.label.text = String(totalCal) + " kcal"
+        self.label.text = String(DailyIntakeDB.shared.todayIntake.totalCalory) + " kcal"
         
         label.textColor = .gray
         label.textAlignment = .center

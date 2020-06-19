@@ -15,7 +15,6 @@ protocol BarcodeDataDelegate {
 
 class SearchViewController: UIViewController {
     var section = 0
-    
     private let dao = DAO()
     private var ref: DatabaseReference!
     
@@ -58,7 +57,6 @@ class SearchViewController: UIViewController {
         searchController.searchBar.placeholder = "음식을 검색하세요"
         
         definesPresentationContext = true
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -106,20 +104,7 @@ class SearchViewController: UIViewController {
 }
 
 extension SearchViewController {
-    private func selectDailyCalorieIntake() {
-        // 비어있으면, today에 넣어줌
-        if DailyIntakeDB.shared.dailyCaloricIntakeArray.count == 0 {
-            DailyIntakeDB.shared.dailyCaloricIntakeArray.append(DailyCaloricIntake.shared)
-        } else {
-            // 비어있지 않다면, 마지막꺼가 오늘날짜인지 확인하고, 아니면 어펜드 해주고, 맞으면 수정
-            if DailyIntakeDB.shared.dailyCaloricIntakeArray[DailyIntakeDB.shared.dailyCaloricIntakeArray.endIndex - 1].today == Date.dateFormatting(yyyyMMDD: "yyyyMMdd") {
-                DailyIntakeDB.shared.dailyCaloricIntakeArray[DailyIntakeDB.shared.dailyCaloricIntakeArray.endIndex - 1] = DailyCaloricIntake.shared
-            } else {
-                print("저기")
-                DailyIntakeDB.shared.dailyCaloricIntakeArray.append(DailyCaloricIntake.shared)
-            }
-        }
-    }
+    
     
     private func filterContentForSearchText(searchText: String) {
         filteredDatas = data.filter { (food: Food) -> Bool in
@@ -148,7 +133,6 @@ extension SearchViewController {
             default: print("안됨")
             }
             
-            self.selectDailyCalorieIntake()
             
             dailyVC.tableView.reloadData()
             
@@ -198,22 +182,14 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             food = data[indexPath.row]
         }
-    
-        // 비었는지 안비었는지 확인,
-        // 비었다면 하나 넣어줌
-        // 안비었다면 마지막 녀석의 날짜가 오늘 날짜와 같은지 확인
-        // 오늘 날짜와 같으면 마지막 녀석에 append
-        // 오늘 날짜와 같지 않으면 하나 추가해주고, today에 새로 할당
         
         switch self.section {
-        case 0: DailyCaloricIntake.shared.breakfast.append(food)
-        case 1: DailyCaloricIntake.shared.lunch.append(food)
-        case 2: DailyCaloricIntake.shared.dinner.append(food)
-        case 3: DailyCaloricIntake.shared.snack.append(food)
+        case 0: DailyIntakeDB.shared.todayIntake.breakfast.append(food)
+        case 1: DailyIntakeDB.shared.todayIntake.lunch.append(food)
+        case 2: DailyIntakeDB.shared.todayIntake.dinner.append(food)
+        case 3: DailyIntakeDB.shared.todayIntake.snack.append(food)
         default: break
         }
-        
-        selectDailyCalorieIntake()
         
         if isFiltering {
             self.presentingViewController?.dismiss(animated: true)
@@ -221,15 +197,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             self.dismiss(animated: true)
         }
         
+        dailyVC.totalCalory =  DailyIntakeDB.shared.todayIntake.totalCalory
         dailyVC.tableView.reloadData()
-        
-        // 오늘 먹은 칼로리 합산 기능 같은데, 수정 해야 할 듯
-        let convertedCalory = food.calory.trimmingCharacters(in: [" "])
-        
-        DailyCaloricIntake.shared.totalCalory += Int(convertedCalory) ?? 0
-        DailyIntakeDB.shared.dailyCaloricIntakeArray[DailyIntakeDB.shared.dailyCaloricIntakeArray.endIndex - 1].totalCalory = DailyCaloricIntake.shared.totalCalory
-        dailyVC.totalCalory = DailyCaloricIntake.shared.totalCalory
-        
     }
     
 }

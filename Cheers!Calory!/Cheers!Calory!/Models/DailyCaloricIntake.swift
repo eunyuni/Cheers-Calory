@@ -9,16 +9,17 @@
 import Foundation
 
 struct DailyCaloricIntake: Codable {
-    static var shared = DailyCaloricIntake()
-    private init() {}
-    
-    var today = Date.dateFormatting(yyyyMMDD: "yyyyMMdd")
+    var today = Date.dateFormatting(yyyyMMDD: Keys.date.rawValue)
     
     var breakfast = [Food]()
     var lunch = [Food]()
     var dinner = [Food]()
     var snack = [Food]()
     
-    var totalCalory: Int = 0
+    var totalCalory: Int {
+        [breakfast, lunch, dinner, snack]
+            .flatMap({ $0 })
+            .reduce(0, { $0 + (Int($1.calory.trimmingCharacters(in: [" "])) ?? 0)})
+    }
     
 }
