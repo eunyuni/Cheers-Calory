@@ -12,7 +12,7 @@ class DailyHeaderView: UIView {
     
     // MARK: -Property
     let label = UILabel()
-    let totalCal = UserDefaults.standard.integer(forKey: Date.dateFormatting(yyyyMMDD: "yyyyMMdd") + "kcal")
+    var totalCal = 0
     
     // MARK: -init
     override init(frame: CGRect) {
@@ -31,7 +31,7 @@ class DailyHeaderView: UIView {
         
         self.addSubview(label)
         label.font = .systemFont(ofSize: 30, weight: .bold)
-        self.label.text = String(totalCal) + " kcal"
+        self.label.text = String(DailyIntakeDB.shared.todayIntake.totalCalory) + " kcal"
         
         label.textColor = .gray
         label.textAlignment = .center
@@ -46,5 +46,15 @@ class DailyHeaderView: UIView {
         }
     }
     
+//    private func setKcalStr() {
+//        guard let data = UserDefaults.standard.data(forKey: "DB") else { return }
+//        if let totalKcal = try? JSONDecoder().decode([DailyCaloricIntake].self, from: data) {
+//            if totalKcal.last?.today == Date.dateFormatting(yyyyMMDD: "yyyyMMdd") {
+//                self.totalCal = totalKcal.last?.totalCalory ?? 0
+//            } else {
+//                self.totalCal = 0
+//            }
+//        }
+//    }
     
 }

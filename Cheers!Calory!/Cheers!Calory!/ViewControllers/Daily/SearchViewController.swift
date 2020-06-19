@@ -15,7 +15,6 @@ protocol BarcodeDataDelegate {
 
 class SearchViewController: UIViewController {
     var section = 0
-    
     private let dao = DAO()
     private var ref: DatabaseReference!
     
@@ -25,6 +24,7 @@ class SearchViewController: UIViewController {
     private let searchController = UISearchController(searchResultsController: nil)
     let tableView = UITableView()
     
+//    private var dailyCaloric = DailyCaloricIntake()
     private var data = [Food]()
     private var filteredDatas = [Food]()
     
@@ -57,7 +57,6 @@ class SearchViewController: UIViewController {
         searchController.searchBar.placeholder = "음식을 검색하세요"
         
         definesPresentationContext = true
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -94,8 +93,8 @@ class SearchViewController: UIViewController {
     }
     
     @objc private func goBack(_ sender: UIBarButtonItem) {
-           dismiss(animated: true)
-       }
+        dismiss(animated: true)
+    }
     
     @objc private func tapBarcodeBtn(_ sender: UIBarButtonItem) {
         let camVC = CameraViewController()
@@ -105,6 +104,8 @@ class SearchViewController: UIViewController {
 }
 
 extension SearchViewController {
+    
+    
     private func filterContentForSearchText(searchText: String) {
         filteredDatas = data.filter { (food: Food) -> Bool in
             return food.foodName.contains(searchText)
@@ -131,6 +132,7 @@ extension SearchViewController {
             case 3: DailyIntake.shared.snack.append(food)
             default: print("안됨")
             }
+            
             
             dailyVC.tableView.reloadData()
             
@@ -182,11 +184,11 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         switch self.section {
-        case 0: DailyIntake.shared.breakfast.append(food)
-        case 1: DailyIntake.shared.lunch.append(food)
-        case 2: DailyIntake.shared.dinner.append(food)
-        case 3: DailyIntake.shared.snack.append(food)
-        default: print("안됨")
+        case 0: DailyIntakeDB.shared.todayIntake.breakfast.append(food)
+        case 1: DailyIntakeDB.shared.todayIntake.lunch.append(food)
+        case 2: DailyIntakeDB.shared.todayIntake.dinner.append(food)
+        case 3: DailyIntakeDB.shared.todayIntake.snack.append(food)
+        default: break
         }
         
         if isFiltering {
@@ -195,13 +197,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             self.dismiss(animated: true)
         }
         
+        dailyVC.totalCalory =  DailyIntakeDB.shared.todayIntake.totalCalory
         dailyVC.tableView.reloadData()
-        
-        // 오늘 먹은 칼로리 합산 기능 같은데, 수정 해야 할 듯
-        let convertedCalory = food.calory.trimmingCharacters(in: [" "])
-        
-        DailyIntake.shared.totalCalory += Int(convertedCalory) ?? 0
-        dailyVC.totalCalory = DailyIntake.shared.totalCalory
     }
     
 }

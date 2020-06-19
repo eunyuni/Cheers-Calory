@@ -9,22 +9,40 @@
 import UIKit
 
 class ReportViewController: UIViewController {
+    
+    private let tableView = UITableView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setUI()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func setUI() {
+        view.addSubview(tableView)
+        tableView.dataSource = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        setConstraint()
     }
-    */
+    private func setConstraint() {
+        let guide = view.safeAreaLayoutGuide
+        tableView.snp.makeConstraints({
+            $0.leading.trailing.top.bottom.equalTo(guide)
+        })
+    }
+}
 
+extension ReportViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        DailyIntakeDB.shared.keyList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let dailyIntake = DailyIntakeDB.shared.getDailyIntake(index: indexPath.row)
+        print(dailyIntake)
+        cell.textLabel?.text = dailyIntake?.today
+        return cell
+    }
+    
+    
 }
