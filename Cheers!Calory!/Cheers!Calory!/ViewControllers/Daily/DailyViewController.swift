@@ -29,14 +29,12 @@ class DailyViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         navigationItem.title = "Daily"
         view.backgroundColor = .white
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = CGFloat.dynamicYMargin(margin: 60)
         setUI()
-        setDatasource()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -75,43 +73,6 @@ class DailyViewController: UIViewController {
             $0.top.equalTo(headerView.snp.bottom).offset(CGFloat.dynamicYMargin(margin: 15))
             $0.leading.trailing.bottom.equalTo(guide)
         }
-    }
-    
-    private func setDatasource() {
-        //        guard let data = UserDefaults.standard.data(forKey: "DB") else { return }
-        //        if let dailyIntake = try? JSONDecoder().decode([DailyCaloricIntake].self, from: data) {
-        //            DailyIntakeDB.shared.dailyCaloricIntakeArray = dailyIntake
-        //        }
-        
-        // 날짜로 구분해서 오늘인 DailyIntake만 빼와서 뿌리기
-        //        if let x = UserDefaults.standard.object(forKey: "breakfast") as? Data {
-        //            if let loaded = try? JSONDecoder().decode([Food].self, from: x) {
-        //                dump(loaded)
-        //                DailyIntake.shared.breakfast = loaded
-        //            }
-        //        }
-        //
-        //        if let x = UserDefaults.standard.object(forKey: "lunch") as? Data {
-        //            if let loaded = try? JSONDecoder().decode([Food].self, from: x) {
-        //                dump(loaded)
-        //                DailyIntake.shared.lunch = loaded
-        //            }
-        //        }
-        //
-        //        if let x = UserDefaults.standard.object(forKey: "dinner") as? Data {
-        //            if let loaded = try? JSONDecoder().decode([Food].self, from: x) {
-        //                dump(loaded)
-        //                DailyIntake.shared.dinner = loaded
-        //            }
-        //        }
-        //
-        //        if let x = UserDefaults.standard.object(forKey: "snack") as? Data {
-        //            if let loaded = try? JSONDecoder().decode([Food].self, from: x) {
-        //                dump(loaded)
-        //                DailyIntake.shared.snack = loaded
-        //            }
-        //        }
-        self.tableView.reloadData()
     }
 }
 
@@ -224,19 +185,21 @@ extension DailyViewController: UITableViewDataSource, UITableViewDelegate {
         
         switch indexPath.section {
         case 0:
-            base = DailyIntake.shared.breakfast[indexPath.row].servingSize
+            base = DailyIntakeDB.shared.todayIntake.breakfast[indexPath.row].servingSize
         case 1:
-            base = DailyIntake.shared.lunch[indexPath.row].servingSize
+            base = DailyIntakeDB.shared.todayIntake.lunch[indexPath.row].servingSize
         case 2:
-            base = DailyIntake.shared.dinner[indexPath.row].servingSize
+            base = DailyIntakeDB.shared.todayIntake.dinner[indexPath.row].servingSize
         case 3:
-            base = DailyIntake.shared.snack[indexPath.row].servingSize
+            base = DailyIntakeDB.shared.todayIntake.snack[indexPath.row].servingSize
         default:
             break
         }
         
         let foodDetailVC = FoodDetailViewController()
-        navigationController?.pushViewController(foodDetailVC, animated: true)
+//        foodDetailVC.preferredContentSize.height = 50
+        foodDetailVC.modalTransitionStyle = .crossDissolve
+        self.present(foodDetailVC, animated: true, completion: nil)
         
         // 가공식품이면 어쩌구, 아니면 저쩌구
         if base.contains("가공") {
@@ -265,5 +228,9 @@ extension DailyViewController: DailySectionHeaderViewDelegate {
         present(navi, animated: true, completion: nil)
     }
     
+    
+}
+
+extension DailyViewController {
     
 }

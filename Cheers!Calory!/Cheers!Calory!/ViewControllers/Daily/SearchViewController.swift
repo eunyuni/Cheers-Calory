@@ -126,10 +126,10 @@ extension SearchViewController {
                             carbohydrate: "0", fat: "0", protein: "0")
             
             switch self.section {
-            case 0: DailyIntake.shared.breakfast.append(food)
-            case 1: DailyIntake.shared.lunch.append(food)
-            case 2: DailyIntake.shared.dinner.append(food)
-            case 3: DailyIntake.shared.snack.append(food)
+            case 0: DailyIntakeDB.shared.todayIntake.breakfast.append(food)
+            case 1: DailyIntakeDB.shared.todayIntake.lunch.append(food)
+            case 2: DailyIntakeDB.shared.todayIntake.dinner.append(food)
+            case 3: DailyIntakeDB.shared.todayIntake.snack.append(food)
             default: print("안됨")
             }
             
