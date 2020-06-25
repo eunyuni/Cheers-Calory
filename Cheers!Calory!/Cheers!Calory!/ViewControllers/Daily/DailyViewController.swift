@@ -10,6 +10,7 @@
 import UIKit
 
 class DailyViewController: UIViewController {
+    
     let headerView = DailyHeaderView() 
     var totalCalory: Int = 0 {
         didSet {
@@ -23,8 +24,6 @@ class DailyViewController: UIViewController {
         return tableView
     }()
     
-    
-    
     private var today = Date()
     
     override func viewDidLoad() {
@@ -34,6 +33,8 @@ class DailyViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = CGFloat.dynamicYMargin(margin: 60)
+        
+        
         setUI()
     }
     
@@ -181,30 +182,31 @@ extension DailyViewController: UITableViewDataSource, UITableViewDelegate {
     
     // 수정
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var base = ""
+        var detail: Food?
         
         switch indexPath.section {
         case 0:
-            base = DailyIntakeDB.shared.todayIntake.breakfast[indexPath.row].servingSize
+            detail = DailyIntakeDB.shared.todayIntake.breakfast[indexPath.row]
         case 1:
-            base = DailyIntakeDB.shared.todayIntake.lunch[indexPath.row].servingSize
+            detail = DailyIntakeDB.shared.todayIntake.lunch[indexPath.row]
         case 2:
-            base = DailyIntakeDB.shared.todayIntake.dinner[indexPath.row].servingSize
+            detail = DailyIntakeDB.shared.todayIntake.dinner[indexPath.row]
         case 3:
-            base = DailyIntakeDB.shared.todayIntake.snack[indexPath.row].servingSize
+            detail = DailyIntakeDB.shared.todayIntake.snack[indexPath.row]
         default:
             break
         }
         
-        let foodDetailVC = FoodDetailViewController()
-//        foodDetailVC.preferredContentSize.height = 50
+        let foodDetailVC = FoodDetailViewController(detail: detail!)
         foodDetailVC.modalTransitionStyle = .crossDissolve
-        self.present(foodDetailVC, animated: true, completion: nil)
-        
-        // 가공식품이면 어쩌구, 아니면 저쩌구
-        if base.contains("가공") {
-            
-        }
+//        foodDetailVC.isModalInPresentation = true
+//        foodDetailVC.modalPresentationStyle = .popover
+        self.present(foodDetailVC, animated: true, completion: {
+            // 모달형식의 ViewController 내려서 끌 수 없도록 막음
+            foodDetailVC.presentationController?.presentedView?.gestureRecognizers?[0].isEnabled = false
+        })
+
+        tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -217,6 +219,7 @@ extension DailyViewController: UITableViewDataSource, UITableViewDelegate {
         return indexPathValue
     }
     
+    
 }
 
 extension DailyViewController: DailySectionHeaderViewDelegate {
@@ -228,9 +231,5 @@ extension DailyViewController: DailySectionHeaderViewDelegate {
         present(navi, animated: true, completion: nil)
     }
     
-    
-}
-
-extension DailyViewController {
     
 }
