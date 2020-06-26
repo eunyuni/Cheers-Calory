@@ -78,7 +78,7 @@ class FoodDetailViewController: UIViewController {
         [servingSizeLabel, proteinLabel, fatLabel, carbohydrateLabel].forEach {
             view.addSubview($0)
             $0.snp.makeConstraints {
-                $0.leading.equalTo(view.snp.centerX).offset(CGFloat.dynamicYMargin(margin: 10))
+                $0.leading.equalTo(view.snp.centerX)
             }
             $0.font = UIFont.dynamicFont(fontSize: 15, weight: .ultraLight)
         }
@@ -87,6 +87,10 @@ class FoodDetailViewController: UIViewController {
             circleView.addSubview($0)
         }
         
+        
+        
+        
+    
         foodTitle.text = dailyIntakeDetail?.foodName
         foodTitle.font = UIFont.dynamicFont(fontSize: 18, weight: .bold)
         totalCal.text = dailyIntakeDetail?.calory
