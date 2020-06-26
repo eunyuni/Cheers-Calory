@@ -24,5 +24,6 @@ struct ColorZip {
     static let lunch = #colorLiteral(red: 0.9249602556, green: 0.8344830871, blue: 0.9150643945, alpha: 1)
     static let evening = #colorLiteral(red: 0.513232708, green: 0.7479327321, blue: 0.9010849595, alpha: 1)
     static let snack = #colorLiteral(red: 0.2197661996, green: 0.2684061825, blue: 0.6051864624, alpha: 1)
+    static let alert = #colorLiteral(red: 0.9568627451, green: 0.9568627451, blue: 0.9568627451, alpha: 1)
 }
 

@@ -10,6 +10,7 @@
 import UIKit
 
 class DailyViewController: UIViewController {
+    
     let headerView = DailyHeaderView() 
     var totalCalory: Int = 0 {
         didSet {
@@ -27,14 +28,14 @@ class DailyViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         navigationItem.title = "Daily"
         view.backgroundColor = .white
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = CGFloat.dynamicYMargin(margin: 60)
+        
+        
         setUI()
-        setDatasource()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -74,37 +75,6 @@ class DailyViewController: UIViewController {
             $0.leading.trailing.bottom.equalTo(guide)
         }
     }
-    
-    private func setDatasource() {
-        if let x = UserDefaults.standard.object(forKey: "breakfast") as? Data {
-            if let loaded = try? JSONDecoder().decode([Food].self, from: x) {
-                dump(loaded)
-                DailyIntake.shared.breakfast = loaded
-            }
-        }
-        
-        if let x = UserDefaults.standard.object(forKey: "lunch") as? Data {
-            if let loaded = try? JSONDecoder().decode([Food].self, from: x) {
-                dump(loaded)
-                DailyIntake.shared.lunch = loaded
-            }
-        }
-        
-        if let x = UserDefaults.standard.object(forKey: "dinner") as? Data {
-            if let loaded = try? JSONDecoder().decode([Food].self, from: x) {
-                dump(loaded)
-                DailyIntake.shared.dinner = loaded
-            }
-        }
-        
-        if let x = UserDefaults.standard.object(forKey: "snack") as? Data {
-            if let loaded = try? JSONDecoder().decode([Food].self, from: x) {
-                dump(loaded)
-                DailyIntake.shared.snack = loaded
-            }
-        }
-        self.tableView.reloadData()
-    }
 }
 
 extension DailyViewController: UITableViewDataSource, UITableViewDelegate {
@@ -115,13 +85,13 @@ extension DailyViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return DailyIntake.shared.breakfast.count
+            return DailyIntakeDB.shared.todayIntake.breakfast.count
         case 1:
-            return DailyIntake.shared.lunch.count
+            return DailyIntakeDB.shared.todayIntake.lunch.count
         case 2:
-            return DailyIntake.shared.dinner.count
+            return DailyIntakeDB.shared.todayIntake.dinner.count
         case 3:
-            return DailyIntake.shared.snack.count
+            return DailyIntakeDB.shared.todayIntake.snack.count
         default:
             return 0
         }
@@ -136,24 +106,26 @@ extension DailyViewController: UITableViewDataSource, UITableViewDelegate {
         
         switch indexPath.section {
         case 0:
-            name = DailyIntake.shared.breakfast[indexPath.row].foodName
-            base = DailyIntake.shared.breakfast[indexPath.row].servingSize
-            calory = DailyIntake.shared.breakfast[indexPath.row].calory
+            name = DailyIntakeDB.shared.todayIntake.breakfast[indexPath.row].foodName
+            base = DailyIntakeDB.shared.todayIntake.breakfast[indexPath.row].servingSize
+            calory = DailyIntakeDB.shared.todayIntake.breakfast[indexPath.row].calory
+            
         case 1:
-            name = DailyIntake.shared.lunch[indexPath.row].foodName
-            base = DailyIntake.shared.lunch[indexPath.row].servingSize
-            calory = DailyIntake.shared.lunch[indexPath.row].calory
+            name = DailyIntakeDB.shared.todayIntake.lunch[indexPath.row].foodName
+            base = DailyIntakeDB.shared.todayIntake.lunch[indexPath.row].servingSize
+            calory = DailyIntakeDB.shared.todayIntake.lunch[indexPath.row].calory
         case 2:
-            name = DailyIntake.shared.dinner[indexPath.row].foodName
-            base = DailyIntake.shared.dinner[indexPath.row].servingSize
-            calory = DailyIntake.shared.dinner[indexPath.row].calory
+            name = DailyIntakeDB.shared.todayIntake.dinner[indexPath.row].foodName
+            base = DailyIntakeDB.shared.todayIntake.dinner[indexPath.row].servingSize
+            calory = DailyIntakeDB.shared.todayIntake.dinner[indexPath.row].calory
         case 3:
-            name = DailyIntake.shared.snack[indexPath.row].foodName
-            base = DailyIntake.shared.snack[indexPath.row].servingSize
-            calory = DailyIntake.shared.snack[indexPath.row].calory
+            name = DailyIntakeDB.shared.todayIntake.snack[indexPath.row].foodName
+            base = DailyIntakeDB.shared.todayIntake.snack[indexPath.row].servingSize
+            calory = DailyIntakeDB.shared.todayIntake.snack[indexPath.row].calory
         default:
             break
         }
+        
         cell.foodName.text = name
         cell.foodBase.text = "\(base)(g)"
         
@@ -189,57 +161,52 @@ extension DailyViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-
         if editingStyle == .delete {
             switch indexPath.section {
             case 0:
-                let convertedCalory = DailyIntake.shared.breakfast[indexPath.row].calory.trimmingCharacters(in: [" "])
-                DailyIntake.shared.totalCalory -= Int(convertedCalory) ?? 0
-                DailyIntake.shared.breakfast.remove(at: indexPath.row)
+                DailyIntakeDB.shared.todayIntake.breakfast.remove(at: indexPath.row)
             case 1:
-                let convertedCalory = DailyIntake.shared.lunch[indexPath.row].calory.trimmingCharacters(in: [" "])
-                DailyIntake.shared.totalCalory -= Int(convertedCalory) ?? 0
-                DailyIntake.shared.lunch.remove(at: indexPath.row)
+                DailyIntakeDB.shared.todayIntake.lunch.remove(at: indexPath.row)
             case 2:
-                let convertedCalory = DailyIntake.shared.dinner[indexPath.row].calory.trimmingCharacters(in: [" "])
-                DailyIntake.shared.totalCalory -= Int(convertedCalory) ?? 0
-                DailyIntake.shared.dinner.remove(at: indexPath.row)
+                DailyIntakeDB.shared.todayIntake.dinner.remove(at: indexPath.row)
             case 3:
-                let convertedCalory = DailyIntake.shared.snack[indexPath.row].calory.trimmingCharacters(in: [" "])
-                DailyIntake.shared.totalCalory -= Int(convertedCalory) ?? 0
-                DailyIntake.shared.snack.remove(at: indexPath.row)
+                DailyIntakeDB.shared.todayIntake.snack.remove(at: indexPath.row)
             default:
                 break
             }
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
-        self.totalCalory = DailyIntake.shared.totalCalory
+        self.totalCalory =  DailyIntakeDB.shared.todayIntake.totalCalory
         tableView.reloadData()
     }
     
+    // 수정
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var base = ""
+        var detail: Food?
         
         switch indexPath.section {
         case 0:
-            base = DailyIntake.shared.breakfast[indexPath.row].servingSize
+            detail = DailyIntakeDB.shared.todayIntake.breakfast[indexPath.row]
         case 1:
-            base = DailyIntake.shared.lunch[indexPath.row].servingSize
+            detail = DailyIntakeDB.shared.todayIntake.lunch[indexPath.row]
         case 2:
-            base = DailyIntake.shared.dinner[indexPath.row].servingSize
+            detail = DailyIntakeDB.shared.todayIntake.dinner[indexPath.row]
         case 3:
-            base = DailyIntake.shared.snack[indexPath.row].servingSize
+            detail = DailyIntakeDB.shared.todayIntake.snack[indexPath.row]
         default:
             break
         }
         
-        let foodDetailVC = FoodDetailViewController()
-        navigationController?.pushViewController(foodDetailVC, animated: true)
-        
-        // 가공식품이면 어쩌구, 아니면 저쩌구
-        if base.contains("가공") {
-            
-        }
+        let foodDetailVC = FoodDetailViewController(detail: detail!)
+        foodDetailVC.modalTransitionStyle = .crossDissolve
+//        foodDetailVC.isModalInPresentation = true
+//        foodDetailVC.modalPresentationStyle = .popover
+        self.present(foodDetailVC, animated: true, completion: {
+            // 모달형식의 ViewController 내려서 끌 수 없도록 막음
+            foodDetailVC.presentationController?.presentedView?.gestureRecognizers?[0].isEnabled = false
+        })
+
+        tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -251,6 +218,7 @@ extension DailyViewController: UITableViewDataSource, UITableViewDelegate {
         let indexPathValue = indexPath
         return indexPathValue
     }
+    
     
 }
 
