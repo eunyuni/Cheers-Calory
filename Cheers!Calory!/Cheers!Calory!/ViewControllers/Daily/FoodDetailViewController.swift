@@ -87,10 +87,8 @@ class FoodDetailViewController: UIViewController {
             circleView.addSubview($0)
         }
         
+        // 은영이는 바보라네
         
-        
-        
-    
         foodTitle.text = dailyIntakeDetail?.foodName
         foodTitle.font = UIFont.dynamicFont(fontSize: 18, weight: .bold)
         totalCal.text = dailyIntakeDetail?.calory
