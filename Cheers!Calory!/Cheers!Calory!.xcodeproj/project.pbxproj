@@ -37,6 +37,7 @@
 		F493A1AD24861E0100EA9B20 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F493A1AC24861E0100EA9B20 /* AppDelegate.swift */; };
 		F493A1B624861E0800EA9B20 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F493A1B524861E0800EA9B20 /* Assets.xcassets */; };
 		F493A1B924861E0800EA9B20 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F493A1B724861E0800EA9B20 /* LaunchScreen.storyboard */; };
+		F4CD5B7F24A5E61900A9A496 /* ReportHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CD5B7E24A5E61900A9A496 /* ReportHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		F493A1B524861E0800EA9B20 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F493A1B824861E0800EA9B20 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F493A1BA24861E0800EA9B20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F4CD5B7E24A5E61900A9A496 /* ReportHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +191,7 @@
 		F454E885248623B400BF1608 /* Report */ = {
 			isa = PBXGroup;
 			children = (
+				F4CD5B7E24A5E61900A9A496 /* ReportHeaderView.swift */,
 			);
 			path = Report;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				F4402F97248FBCB8006D5C80 /* RecommendedBodyView.swift in Sources */,
 				F4402F96248FBCB8006D5C80 /* RecommendedMainView.swift in Sources */,
 				F454E88C2486242C00BF1608 /* SearchViewController.swift in Sources */,
+				F4CD5B7F24A5E61900A9A496 /* ReportHeaderView.swift in Sources */,
 				F46AEF162487C17400FE575F /* DailyHeaderView.swift in Sources */,
 				F454E8892486241300BF1608 /* FoodDetailViewController.swift in Sources */,
 				F4761E572492036E001F3462 /* DailyIntakeDB.swift in Sources */,
