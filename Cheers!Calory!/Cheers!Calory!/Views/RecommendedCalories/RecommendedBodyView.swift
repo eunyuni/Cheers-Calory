@@ -34,11 +34,14 @@ class RecommendedBodyView: UIView {
   
   // MARK: -Action
   
-  func configue(nickname: String, weight: String, calories: String) {
-    averageWeight.text = "\(nickname)의 평균체중"
-    averageWeightLabel.text = "  \(weight)  "
-    recommendedCalories.text = "\(nickname)의 일일권장칼로리"
-    recommendedCaloriesLabel.text = " \(calories) "
+  func configue(weight: String, calories: String) {
+    averageWeight.text = "My average weight"
+    averageWeightLabel.text = "  \(weight)kg  "
+    recommendedCalories.text = "My Daily Calories"
+    recommendedCaloriesLabel.text = " \(calories)kcal "
+    
+//    My Daily Recommended Calories
+//    My average weight
   }
   
   // MARK: -setupUI
@@ -55,22 +58,16 @@ class RecommendedBodyView: UIView {
     
     [puppleLine1, puppleLine2,].forEach {
       $0.backgroundColor = ColorZip.purple
+//      $0.backgroundColor = .white
     }
     [averageWeight, recommendedCalories].forEach {
-      $0.font = .systemFont(ofSize: 24, weight: .regular)
+      $0.font = .systemFont(ofSize: 22, weight: .regular)
       $0.textColor = ColorZip.purple
     }
     [averageWeightLabel, recommendedCaloriesLabel].forEach {
       $0.font = .systemFont(ofSize: 24, weight: .regular)
       $0.textColor = ColorZip.purple
-      $0.layer.borderWidth = 0.8
-      $0.layer.borderColor = ColorZip.purple.cgColor
     }
-    
-    averageWeight.text = "길동의 평균체중"
-    averageWeightLabel.text = "  48kg  "
-    recommendedCalories.text = "길동의 일일권장칼로리"
-    recommendedCaloriesLabel.text = " 700kcal "
     setupConstraint()
   }
   
@@ -79,16 +76,16 @@ class RecommendedBodyView: UIView {
   private func setupConstraint() {
     
     puppleLine1.snp.makeConstraints {
-      $0.top.equalToSuperview().offset(CGFloat.dynamicXMargin(margin: 100))
-      $0.height.equalTo(CGFloat.dynamicYMargin(margin: 2))
+      $0.top.equalToSuperview().offset(CGFloat.dynamicXMargin(margin: 86))
+      $0.height.equalTo(CGFloat.dynamicYMargin(margin: 1.6))
       $0.width.equalToSuperview().multipliedBy(0.86)
       $0.trailing.equalToSuperview()
     }
     
     puppleLine2.snp.makeConstraints {
-      $0.top.equalTo(puppleLine1.snp.bottom).offset(CGFloat.dynamicYMargin(margin: 100))
-      $0.height.equalTo(CGFloat.dynamicYMargin(margin: 2))
-      $0.width.equalToSuperview().multipliedBy(0.9)
+      $0.top.equalTo(puppleLine1.snp.bottom).offset(CGFloat.dynamicYMargin(margin: 86))
+      $0.height.equalTo(CGFloat.dynamicYMargin(margin: 1.6))
+      $0.width.equalToSuperview().multipliedBy(0.86)
       $0.trailing.equalToSuperview()
     }
     
