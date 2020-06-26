@@ -24,7 +24,7 @@ class DailyViewController: UIViewController {
         return tableView
     }()
     
-    private var today = Date()
+//    private var today = Date()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -199,8 +199,7 @@ extension DailyViewController: UITableViewDataSource, UITableViewDelegate {
         
         let foodDetailVC = FoodDetailViewController(detail: detail!)
         foodDetailVC.modalTransitionStyle = .crossDissolve
-//        foodDetailVC.isModalInPresentation = true
-//        foodDetailVC.modalPresentationStyle = .popover
+
         self.present(foodDetailVC, animated: true, completion: {
             // 모달형식의 ViewController 내려서 끌 수 없도록 막음
             foodDetailVC.presentationController?.presentedView?.gestureRecognizers?[0].isEnabled = false
