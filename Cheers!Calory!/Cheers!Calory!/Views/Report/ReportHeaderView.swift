@@ -13,9 +13,9 @@ class ReportHeaderView: UIView {
     
     private let chartView = LineChartView()
     
-    // 계산프로퍼티로 만들어서 DailyIntakeDB의 KeyList의 맨 뒤 7개의 totalCalory만 꺼내오자
-    // for문 돌려서 뒤에 7개만 꺼내고, 7개 안되면 걍 break 하면 될 듯
-    // 레이블도 해야하니깐 해당 날짜의 요일 구하는 함수 만들어서 DailyCaloricIntake에 계산프로퍼티 작성해줘서 거기에서 꺼내서 레이블에 넣어주자
+    
+    // 레이블도 해야하니깐 해당 날짜의 요일 구하는 함수 만들어서 DailyCaloricIntake에 계산프로퍼티 작성해줘서 거기에서 꺼내서 레이블에 넣어주자 => 안됨
+    // 오늘 값 업데이트랑 x축 레이블 설정하는 방법 수정할 것
     private var chartDatas = [Double]()
     private var xAxis = [String]()
 
@@ -49,7 +49,6 @@ class ReportHeaderView: UIView {
         for i in DailyIntakeDB.shared.keyList {
             cnt += 1
             chartDatas.append(Double(DailyIntakeDB.shared.getDailyIntake(key: i)?.totalCalory ?? 0))
-            xAxis.append(DailyIntakeDB.shared.getDailyIntake(key: i)?.today ?? "")
 //            switch DailyIntakeDB.shared.getDailyIntake(key: i)?.dayOftheWeek {
 //            case 1:
 //                xAxis.append("Sun")
@@ -94,15 +93,15 @@ class ReportHeaderView: UIView {
             lineChartEntry.append(value)
         }
         chartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: xAxis)
-        
+
         let line1 = LineChartDataSet(entries: lineChartEntry, label: "Calories")
         line1.colors = [ColorZip.purple]
         line1.circleRadius = 3
         line1.lineWidth = 2
-        
+
         let data = LineChartData()
         data.addDataSet(line1)
-        
+
         chartView.data = data
         chartView.notifyDataSetChanged()
     }
