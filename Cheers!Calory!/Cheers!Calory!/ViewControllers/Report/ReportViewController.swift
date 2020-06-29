@@ -18,14 +18,18 @@ class ReportViewController: UIViewController {
         setUI()
     }
     
-    private func setUI() {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+    }
+    
+    private func setUI() {
         [headerView, tableView].forEach {
             view.addSubview($0)
         }
         
         tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        tableView.register(ReportsTableViewCell.self, forCellReuseIdentifier: ReportsTableViewCell.identifier)
         setConstraint()
     }
     private func setConstraint() {
@@ -49,9 +53,11 @@ extension ReportViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: ReportsTableViewCell.identifier, for: indexPath) as! ReportsTableViewCell
         let dailyIntake = DailyIntakeDB.shared.getDailyIntake(index: indexPath.row)
-        cell.textLabel?.text = dailyIntake?.today
+        cell.dateLabel.text = dailyIntake?.today
+        let totalStr = "\(dailyIntake?.totalCalory ?? 0) kcal"
+        cell.caloryLabel.text = totalStr
         return cell
     }
     
