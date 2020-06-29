@@ -66,6 +66,6 @@ struct DailyIntakeDB: Codable {
 }
 
 enum Keys: String {
-    case date = "yy년 MM월 dd일 HH시"
+    case date = "yy년 MM월 dd일"
     case keyList
 }
