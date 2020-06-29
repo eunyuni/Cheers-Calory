@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol DailyDetailDelegate {
-    func sendDetail(detail: Food?)
-}
-
 class FoodDetailViewController: UIViewController {
     var dailyIntakeDetail: Food?
     

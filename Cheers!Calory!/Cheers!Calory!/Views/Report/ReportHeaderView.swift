@@ -13,8 +13,11 @@ class ReportHeaderView: UIView {
     
     private let chartView = LineChartView()
     
-    // 계산프로퍼티로 만들어서 DailyIntakeDB의 KeyList의 맨 뒤 7개의 totalCalory만 꺼내오자
-    private let chartDatas: [Double] = [2346, 2200, 2000, 1897, 1458, 2509, 1203]
+    
+    // 레이블도 해야하니깐 해당 날짜의 요일 구하는 함수 만들어서 DailyCaloricIntake에 계산프로퍼티 작성해줘서 거기에서 꺼내서 레이블에 넣어주자 => 안됨
+    // 오늘 값 업데이트랑 x축 레이블 설정하는 방법 수정할 것
+    private var chartDatas = [Double]()
+    private var xAxis = [String]()
 
     // MARK: -init
     override init(frame: CGRect) {
@@ -31,11 +34,44 @@ class ReportHeaderView: UIView {
         setConstraints()
         setChartView()
         updateGraph()
+        print("데이터", chartDatas)
+        print("날짜", xAxis)
     }
     
     private func setConstraints() {
         chartView.snp.makeConstraints {
             $0.leading.trailing.top.bottom.equalToSuperview().multipliedBy(0.95)
+        }
+    }
+    
+    private func setChartData() {
+        var cnt = 0
+        for i in DailyIntakeDB.shared.keyList {
+            cnt += 1
+            chartDatas.append(Double(DailyIntakeDB.shared.getDailyIntake(key: i)?.totalCalory ?? 0))
+//            switch DailyIntakeDB.shared.getDailyIntake(key: i)?.dayOftheWeek {
+//            case 1:
+//                xAxis.append("Sun")
+//            case 2:
+//                xAxis.append("Mon")
+//            case 3:
+//                xAxis.append("Tue")
+//            case 4:
+//                xAxis.append("Wed")
+//            case 5:
+//                xAxis.append("Thu")
+//            case 6:
+//                xAxis.append("Fri")
+//            case 7:
+//                xAxis.append("Sat")
+//            default:
+//                break
+//            }
+            if cnt < 7 {
+                continue
+            } else {
+                break
+            }
         }
     }
     
@@ -48,25 +84,24 @@ class ReportHeaderView: UIView {
         
     }
     
-    private func updateGraph() {
+    func updateGraph() {
+        setChartData()
         var lineChartEntry = [ChartDataEntry]()
 
         for i in 0..<chartDatas.count {
-            
             let value = ChartDataEntry(x: Double(i), y: chartDatas[i])
             lineChartEntry.append(value)
         }
-        let xAxis = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
         chartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: xAxis)
-        
+
         let line1 = LineChartDataSet(entries: lineChartEntry, label: "Calories")
         line1.colors = [ColorZip.purple]
         line1.circleRadius = 3
         line1.lineWidth = 2
-        
+
         let data = LineChartData()
         data.addDataSet(line1)
-        
+
         chartView.data = data
         chartView.notifyDataSetChanged()
     }

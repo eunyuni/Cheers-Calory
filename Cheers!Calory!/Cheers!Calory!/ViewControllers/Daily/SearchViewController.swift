@@ -199,6 +199,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         
         dailyVC.totalCalory =  DailyIntakeDB.shared.todayIntake.totalCalory
         dailyVC.tableView.reloadData()
+        
     }
     
 }
