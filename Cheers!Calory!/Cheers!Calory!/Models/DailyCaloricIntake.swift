@@ -9,7 +9,13 @@
 import Foundation
 
 struct DailyCaloricIntake: Codable {
-    var today = Date.dateFormatting(yyyyMMDD: Keys.date.rawValue)
+    let today = Date.dateFormatting(yyyyMMDD: Keys.date.rawValue)
+    var dayOftheWeek: Int {
+        let cal = Calendar(identifier: .gregorian)
+        let now = Date()
+        let comps = cal.dateComponents([.weekday], from: now)
+        return comps.weekday!
+    }
     
     var breakfast = [Food]()
     var lunch = [Food]()
