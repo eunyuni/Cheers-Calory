@@ -9,7 +9,7 @@
 import Foundation
 
 struct DailyCaloricIntake: Codable {
-    let today = Date.dateFormatting(yyyyMMDD: Keys.date.rawValue)
+    var today = Date.dateFormatting(yyyyMMDD: Keys.date.rawValue)
     var dayOftheWeek: Int {
         let cal = Calendar(identifier: .gregorian)
         let now = Date()
