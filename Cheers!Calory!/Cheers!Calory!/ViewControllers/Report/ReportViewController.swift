@@ -20,7 +20,6 @@ class ReportViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -110,21 +109,21 @@ extension ReportViewController {
     }
     
     func getWeakDay(date: String) -> String {
-        let weakDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-        var returnStr = ""
+        let weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+        var dayOfWeek = ""
         
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy년 MM월 dd일"
         formatter.timeZone = TimeZone(abbreviation: "UTC")
         
-        if let date1 = formatter.date(from: date) {
-            let cal = Calendar(identifier: .gregorian)
-            let index = cal.dateComponents([.weekday], from: date1)
-            returnStr = weakDays[index.weekday! - 1]
+        if let rawDate = formatter.date(from: date) {
+            let calendar = Calendar(identifier: .gregorian)
+            let dateComponents = calendar.dateComponents([.weekday], from: rawDate)
+            dayOfWeek = weekDays[dateComponents.weekday! - 1]
         } else {
-            returnStr = "날짜데이터가 없습니다."
+            dayOfWeek = "날짜데이터가 없습니다."
         }
         
-        return returnStr
+        return dayOfWeek
     }
 }
