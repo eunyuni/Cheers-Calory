@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9E2E8907EDB64FBF60537BC6 /* Pods_Cheers_Calory_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF05EA0D0D00B27DB421EE0 /* Pods_Cheers_Calory_.framework */; };
+		E70B7F4224AC425D00BA713A /* ReportDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70B7F4124AC425D00BA713A /* ReportDetailViewController.swift */; };
 		F420587824A9C5C600E05954 /* ReportsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F420587724A9C5C600E05954 /* ReportsTableViewCell.swift */; };
 		F4402F94248FBCB8006D5C80 /* RecommendedBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4402F90248FBCB8006D5C80 /* RecommendedBottomView.swift */; };
 		F4402F95248FBCB8006D5C80 /* CaloryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4402F91248FBCB8006D5C80 /* CaloryView.swift */; };
@@ -45,6 +46,7 @@
 		A658D709AA72A8F65A2529E2 /* Pods-Cheers!Calory!.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cheers!Calory!.debug.xcconfig"; path = "Target Support Files/Pods-Cheers!Calory!/Pods-Cheers!Calory!.debug.xcconfig"; sourceTree = "<group>"; };
 		DAF05EA0D0D00B27DB421EE0 /* Pods_Cheers_Calory_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cheers_Calory_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB69CCD704D721B2A9CA16E9 /* Pods-Cheers!Calory!.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cheers!Calory!.release.xcconfig"; path = "Target Support Files/Pods-Cheers!Calory!/Pods-Cheers!Calory!.release.xcconfig"; sourceTree = "<group>"; };
+		E70B7F4124AC425D00BA713A /* ReportDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDetailViewController.swift; sourceTree = "<group>"; };
 		F420587724A9C5C600E05954 /* ReportsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsTableViewCell.swift; sourceTree = "<group>"; };
 		F4402F90248FBCB8006D5C80 /* RecommendedBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendedBottomView.swift; sourceTree = "<group>"; };
 		F4402F91248FBCB8006D5C80 /* CaloryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaloryView.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				F454E87F2486222100BF1608 /* ReportViewController.swift */,
+				E70B7F4124AC425D00BA713A /* ReportDetailViewController.swift */,
 			);
 			path = Report;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 				F454E8A3248683D700BF1608 /* LastUserInfoViewController.swift in Sources */,
 				F454E87E2486221200BF1608 /* DailyViewController.swift in Sources */,
 				F454E89E2486329300BF1608 /* Barcode.swift in Sources */,
+				E70B7F4224AC425D00BA713A /* ReportDetailViewController.swift in Sources */,
 				F4402F97248FBCB8006D5C80 /* RecommendedBodyView.swift in Sources */,
 				F4402F96248FBCB8006D5C80 /* RecommendedMainView.swift in Sources */,
 				F454E88C2486242C00BF1608 /* SearchViewController.swift in Sources */,
