@@ -7,20 +7,26 @@
 //
 
 import UIKit
+import Charts
 
 class ReportViewController: UIViewController {
     
     private let headerView = ReportHeaderView()
     private let tableView = UITableView()
 
+    private var chartDatas = [Double]()
+    private var xAxis = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
+        updateGraph()
     }
     
     private func setUI() {
@@ -61,5 +67,60 @@ extension ReportViewController: UITableViewDataSource {
         return cell
     }
     
+}
+
+extension ReportViewController {
+    private func setChartData() {
+        var cnt = 0
+        for i in DailyIntakeDB.shared.keyList {
+            cnt += 1
+            chartDatas.append(Double(DailyIntakeDB.shared.getDailyIntake(key: i)?.totalCalory ?? 0))
+            xAxis.append(getWeakDay(date: DailyIntakeDB.shared.getDailyIntake(key: i)?.today ?? ""))
+            if cnt < 7 {
+                continue
+            } else {
+                break
+            }
+        }
+    }
     
+    func updateGraph() {
+        chartDatas = []
+        setChartData()
+        var lineChartEntry = [ChartDataEntry]()
+
+        for i in 0..<chartDatas.count {
+            let value = ChartDataEntry(x: Double(i), y: chartDatas[i])
+            lineChartEntry.append(value)
+        }
+        headerView.chartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: xAxis)
+
+        let line1 = LineChartDataSet(entries: lineChartEntry, label: "Calories")
+        line1.colors = [ColorZip.purple]
+        line1.circleRadius = 3
+        line1.lineWidth = 2
+
+        let data = LineChartData()
+        data.addDataSet(line1)
+
+        headerView.chartView.data = data
+        headerView.chartView.notifyDataSetChanged()
+        
+    }
+    
+    func getWeakDay(date: String) -> String {
+        let weakDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+        var returnStr = ""
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy년 MM월 dd일"
+        formatter.timeZone = TimeZone(abbreviation: "UTC")
+        let date1 = formatter.date(from: date)!
+        
+        let cal = Calendar(identifier: .gregorian)
+        let index = cal.dateComponents([.weekday], from: date1)
+        
+        returnStr = weakDays[index.weekday! - 1]
+        return returnStr
+    }
 }
