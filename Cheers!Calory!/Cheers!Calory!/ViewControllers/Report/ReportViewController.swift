@@ -115,12 +115,15 @@ extension ReportViewController {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy년 MM월 dd일"
         formatter.timeZone = TimeZone(abbreviation: "UTC")
-        let date1 = formatter.date(from: date)!
         
-        let cal = Calendar(identifier: .gregorian)
-        let index = cal.dateComponents([.weekday], from: date1)
+        if let date1 = formatter.date(from: date) {
+            let cal = Calendar(identifier: .gregorian)
+            let index = cal.dateComponents([.weekday], from: date1)
+            returnStr = weakDays[index.weekday! - 1]
+        } else {
+            returnStr = "날짜데이터가 없습니다."
+        }
         
-        returnStr = weakDays[index.weekday! - 1]
         return returnStr
     }
 }
