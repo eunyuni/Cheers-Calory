@@ -49,24 +49,7 @@ class ReportHeaderView: UIView {
         for i in DailyIntakeDB.shared.keyList {
             cnt += 1
             chartDatas.append(Double(DailyIntakeDB.shared.getDailyIntake(key: i)?.totalCalory ?? 0))
-//            switch DailyIntakeDB.shared.getDailyIntake(key: i)?.dayOftheWeek {
-//            case 1:
-//                xAxis.append("Sun")
-//            case 2:
-//                xAxis.append("Mon")
-//            case 3:
-//                xAxis.append("Tue")
-//            case 4:
-//                xAxis.append("Wed")
-//            case 5:
-//                xAxis.append("Thu")
-//            case 6:
-//                xAxis.append("Fri")
-//            case 7:
-//                xAxis.append("Sat")
-//            default:
-//                break
-//            }
+            xAxis.append(getWeakDay(date: DailyIntakeDB.shared.getDailyIntake(key: i)?.today ?? ""))
             if cnt < 7 {
                 continue
             } else {
@@ -104,5 +87,22 @@ class ReportHeaderView: UIView {
 
         chartView.data = data
         chartView.notifyDataSetChanged()
+        
+    }
+    
+    func getWeakDay(date: String) -> String {
+        let weakDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+        var returnStr = ""
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy년 MM월 dd일"
+        formatter.timeZone = TimeZone(abbreviation: "UTC")
+        let date1 = formatter.date(from: date)!
+        
+        let cal = Calendar(identifier: .gregorian)
+        let index = cal.dateComponents([.weekday], from: date1)
+        
+        returnStr = weakDays[index.weekday! - 1]
+        return returnStr
     }
 }
