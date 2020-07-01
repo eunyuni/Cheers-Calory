@@ -20,6 +20,7 @@ class ReportViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
+        tableView.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,7 +53,7 @@ class ReportViewController: UIViewController {
     }
 }
 
-extension ReportViewController: UITableViewDataSource {
+extension ReportViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         DailyIntakeDB.shared.keyList.count
     }
@@ -64,6 +65,11 @@ extension ReportViewController: UITableViewDataSource {
         let totalStr = "\(dailyIntake?.totalCalory ?? 0) kcal"
         cell.caloryLabel.text = totalStr
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let reportDetailVC = ReportDetailViewController()
+        present(reportDetailVC, animated: true, completion: nil)
     }
     
 }
