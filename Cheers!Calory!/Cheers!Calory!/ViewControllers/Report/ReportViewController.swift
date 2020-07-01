@@ -86,6 +86,7 @@ extension ReportViewController {
     
     func updateGraph() {
         chartDatas = []
+        xAxis = []
         setChartData()
         var lineChartEntry = [ChartDataEntry]()
 
