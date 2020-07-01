@@ -68,7 +68,10 @@ extension ReportViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let reportDetailVC = ReportDetailViewController()
+        guard let dailyDetail = DailyIntakeDB.shared.getDailyIntake(index: indexPath.row) else { return }
+        
+        // 여기서 해당 날짜의 식단정보를 담아서 reportDetailVC의 인스턴스 초기화
+        let reportDetailVC = ReportDetailViewController(dailyDetail: dailyDetail)
         present(reportDetailVC, animated: true, completion: nil)
     }
     
