@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9E2E8907EDB64FBF60537BC6 /* Pods_Cheers_Calory_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF05EA0D0D00B27DB421EE0 /* Pods_Cheers_Calory_.framework */; };
 		E70B7F4224AC425D00BA713A /* ReportDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70B7F4124AC425D00BA713A /* ReportDetailViewController.swift */; };
+		E70B7F4424AC438000BA713A /* ReprotsDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70B7F4324AC438000BA713A /* ReprotsDetailTableViewCell.swift */; };
 		F420587824A9C5C600E05954 /* ReportsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F420587724A9C5C600E05954 /* ReportsTableViewCell.swift */; };
 		F4402F94248FBCB8006D5C80 /* RecommendedBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4402F90248FBCB8006D5C80 /* RecommendedBottomView.swift */; };
 		F4402F95248FBCB8006D5C80 /* CaloryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4402F91248FBCB8006D5C80 /* CaloryView.swift */; };
@@ -47,6 +48,7 @@
 		DAF05EA0D0D00B27DB421EE0 /* Pods_Cheers_Calory_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cheers_Calory_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB69CCD704D721B2A9CA16E9 /* Pods-Cheers!Calory!.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cheers!Calory!.release.xcconfig"; path = "Target Support Files/Pods-Cheers!Calory!/Pods-Cheers!Calory!.release.xcconfig"; sourceTree = "<group>"; };
 		E70B7F4124AC425D00BA713A /* ReportDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDetailViewController.swift; sourceTree = "<group>"; };
+		E70B7F4324AC438000BA713A /* ReprotsDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReprotsDetailTableViewCell.swift; sourceTree = "<group>"; };
 		F420587724A9C5C600E05954 /* ReportsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsTableViewCell.swift; sourceTree = "<group>"; };
 		F4402F90248FBCB8006D5C80 /* RecommendedBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendedBottomView.swift; sourceTree = "<group>"; };
 		F4402F91248FBCB8006D5C80 /* CaloryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaloryView.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 			children = (
 				F4CD5B7E24A5E61900A9A496 /* ReportHeaderView.swift */,
 				F420587724A9C5C600E05954 /* ReportsTableViewCell.swift */,
+				E70B7F4324AC438000BA713A /* ReprotsDetailTableViewCell.swift */,
 			);
 			path = Report;
 			sourceTree = "<group>";
@@ -386,6 +389,7 @@
 				F4761E552491F62A001F3462 /* DailyCaloricIntake.swift in Sources */,
 				F4402F95248FBCB8006D5C80 /* CaloryView.swift in Sources */,
 				F454E89A2486324000BF1608 /* ColorZip.swift in Sources */,
+				E70B7F4424AC438000BA713A /* ReprotsDetailTableViewCell.swift in Sources */,
 				F454E87C248621F900BF1608 /* RecommendedCaloriesViewController.swift in Sources */,
 				F454E88E2486243D00BF1608 /* CameraViewController.swift in Sources */,
 				F46AEF1C2487C8F000FE575F /* DailySectionHeaderView.swift in Sources */,
