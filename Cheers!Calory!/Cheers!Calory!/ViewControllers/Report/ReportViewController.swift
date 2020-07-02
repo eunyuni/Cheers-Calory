@@ -20,7 +20,7 @@ class ReportViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
-        
+        tableView.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,7 +53,7 @@ class ReportViewController: UIViewController {
     }
 }
 
-extension ReportViewController: UITableViewDataSource {
+extension ReportViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         DailyIntakeDB.shared.keyList.count
     }
@@ -65,6 +65,14 @@ extension ReportViewController: UITableViewDataSource {
         let totalStr = "\(dailyIntake?.totalCalory ?? 0) kcal"
         cell.caloryLabel.text = totalStr
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let dailyDetail = DailyIntakeDB.shared.getDailyIntake(index: indexPath.row) else { return }
+        
+        // 여기서 해당 날짜의 식단정보를 담아서 reportDetailVC의 인스턴스 초기화
+        let reportDetailVC = ReportDetailViewController(dailyDetail: dailyDetail)
+        present(reportDetailVC, animated: true, completion: nil)
     }
     
 }
@@ -110,21 +118,21 @@ extension ReportViewController {
     }
     
     func getWeakDay(date: String) -> String {
-        let weakDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-        var returnStr = ""
+        let weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+        var dayOfWeek = ""
         
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy년 MM월 dd일"
         formatter.timeZone = TimeZone(abbreviation: "UTC")
         
-        if let date1 = formatter.date(from: date) {
-            let cal = Calendar(identifier: .gregorian)
-            let index = cal.dateComponents([.weekday], from: date1)
-            returnStr = weakDays[index.weekday! - 1]
+        if let rawDate = formatter.date(from: date) {
+            let calendar = Calendar(identifier: .gregorian)
+            let dateComponents = calendar.dateComponents([.weekday], from: rawDate)
+            dayOfWeek = weekDays[dateComponents.weekday! - 1]
         } else {
-            returnStr = "날짜데이터가 없습니다."
+            dayOfWeek = "날짜데이터가 없습니다."
         }
         
-        return returnStr
+        return dayOfWeek
     }
 }
