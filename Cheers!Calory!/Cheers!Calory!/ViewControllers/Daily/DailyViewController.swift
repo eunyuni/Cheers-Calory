@@ -145,13 +145,13 @@ extension DailyViewController: UITableViewDataSource, UITableViewDelegate {
         
         switch section {
         case 0:
-            view.foodLabel.text = "아침" as String
+            view.foodLabel.text = "아침"
         case 1:
-            view.foodLabel.text = "점심" as String
+            view.foodLabel.text = "점심"
         case 2:
-            view.foodLabel.text = "저녁" as String
+            view.foodLabel.text = "저녁"
         case 3:
-            view.foodLabel.text = "간식" as String
+            view.foodLabel.text = "간식"
         default:
             break
         }
