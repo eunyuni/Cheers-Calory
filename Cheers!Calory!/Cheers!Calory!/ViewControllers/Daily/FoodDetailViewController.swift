@@ -56,7 +56,7 @@ class FoodDetailViewController: UIViewController {
         }
         
         circleView.layer.cornerRadius = circleView.frame.width / 2
-        checkButton.layer.addBorder([.top], color: ColorZip.lightGray, width: 1)
+        checkButton.layer.addBorder([.top], color: ColorZip.lightGray, width: 0.5)
     }
     
     // 델리게이트 패턴으로 레이블 타이틀 전달해줄것
@@ -82,8 +82,6 @@ class FoodDetailViewController: UIViewController {
         [totalCal, totalCalLabel].forEach {
             circleView.addSubview($0)
         }
-        
-        // 은영이는 바보라네, 사실 진짜 바보는 나였다
         
         foodTitle.text = dailyIntakeDetail?.foodName
         foodTitle.font = UIFont.dynamicFont(fontSize: 18, weight: .bold)

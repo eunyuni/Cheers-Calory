@@ -24,7 +24,7 @@ class DailyViewController: UIViewController {
         return tableView
     }()
     
-//    private var today = Date()
+    //    private var today = Date()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +41,6 @@ class DailyViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tableView.reloadData()
-        // 여기서 데이터 저장
     }
     
     private func setTableView() {
@@ -180,7 +179,7 @@ extension DailyViewController: UITableViewDataSource, UITableViewDelegate {
         tableView.reloadData()
     }
     
-    // 수정
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var detail: Food?
         
@@ -197,14 +196,32 @@ extension DailyViewController: UITableViewDataSource, UITableViewDelegate {
             break
         }
         
-        let foodDetailVC = FoodDetailViewController(detail: detail!)
-        foodDetailVC.modalTransitionStyle = .crossDissolve
-
-        self.present(foodDetailVC, animated: true, completion: {
-            // 모달형식의 ViewController 내려서 끌 수 없도록 막음
-            foodDetailVC.presentationController?.presentedView?.gestureRecognizers?[0].isEnabled = false
-        })
-
+        if (detail?.foodName.contains("없음"))! {
+            let alert = UIAlertController(title: "정보 없음", message: "해당 음식에 대한 정보가 없습니다", preferredStyle: .alert)
+            let check = UIAlertAction(title: "확인", style: .default, handler: nil)
+            alert.addAction(check)
+            present(alert, animated: true, completion: nil)
+        } else {
+            if (detail?.servingSize.contains("가공"))! {
+                let productDetailVC = ProductDetailViewController(detail: detail!)
+                productDetailVC.modalTransitionStyle = .crossDissolve
+                
+                self.present(productDetailVC, animated: true, completion: {
+                    productDetailVC.presentationController?.presentedView?.gestureRecognizers?[0].isEnabled = false
+                })
+            } else {
+                let foodDetailVC = FoodDetailViewController(detail: detail!)
+                foodDetailVC.modalTransitionStyle = .crossDissolve
+                
+                self.present(foodDetailVC, animated: true, completion: {
+                    // 모달형식의 ViewController 내려서 끌 수 없도록 막음
+                    foodDetailVC.presentationController?.presentedView?.gestureRecognizers?[0].isEnabled = false
+                })
+            }
+        }
+        
+        
+        
         tableView.reloadData()
     }
     
