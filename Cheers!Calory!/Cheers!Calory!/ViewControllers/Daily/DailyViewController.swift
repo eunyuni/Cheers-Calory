@@ -196,31 +196,22 @@ extension DailyViewController: UITableViewDataSource, UITableViewDelegate {
             break
         }
         
-        if (detail?.foodName.contains("없음"))! {
-            let alert = UIAlertController(title: "정보 없음", message: "해당 음식에 대한 정보가 없습니다", preferredStyle: .alert)
-            let check = UIAlertAction(title: "확인", style: .default, handler: nil)
-            alert.addAction(check)
-            present(alert, animated: true, completion: nil)
+        if (detail?.servingSize.contains("가공"))! {
+            let productDetailVC = ProductDetailViewController(detail: detail!)
+            productDetailVC.modalTransitionStyle = .crossDissolve
+            
+            self.present(productDetailVC, animated: true, completion: {
+                productDetailVC.presentationController?.presentedView?.gestureRecognizers?[0].isEnabled = false
+            })
         } else {
-            if (detail?.servingSize.contains("가공"))! {
-                let productDetailVC = ProductDetailViewController(detail: detail!)
-                productDetailVC.modalTransitionStyle = .crossDissolve
-                
-                self.present(productDetailVC, animated: true, completion: {
-                    productDetailVC.presentationController?.presentedView?.gestureRecognizers?[0].isEnabled = false
-                })
-            } else {
-                let foodDetailVC = FoodDetailViewController(detail: detail!)
-                foodDetailVC.modalTransitionStyle = .crossDissolve
-                
-                self.present(foodDetailVC, animated: true, completion: {
-                    // 모달형식의 ViewController 내려서 끌 수 없도록 막음
-                    foodDetailVC.presentationController?.presentedView?.gestureRecognizers?[0].isEnabled = false
-                })
-            }
+            let foodDetailVC = FoodDetailViewController(detail: detail!)
+            foodDetailVC.modalTransitionStyle = .crossDissolve
+            
+            self.present(foodDetailVC, animated: true, completion: {
+                // 모달형식의 ViewController 내려서 끌 수 없도록 막음
+                foodDetailVC.presentationController?.presentedView?.gestureRecognizers?[0].isEnabled = false
+            })
         }
-        
-        
         
         tableView.reloadData()
     }
