@@ -10,6 +10,7 @@
 		9E2E8907EDB64FBF60537BC6 /* Pods_Cheers_Calory_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF05EA0D0D00B27DB421EE0 /* Pods_Cheers_Calory_.framework */; };
 		E70B7F4224AC425D00BA713A /* ReportDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70B7F4124AC425D00BA713A /* ReportDetailViewController.swift */; };
 		E70B7F4424AC438000BA713A /* ReprotsDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70B7F4324AC438000BA713A /* ReprotsDetailTableViewCell.swift */; };
+		E70B7F4A24B2FFBD00BA713A /* ReportsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70B7F4924B2FFBD00BA713A /* ReportsDetailView.swift */; };
 		F41FFBB724ADC12B004073BE /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41FFBB624ADC12B004073BE /* ProductDetailViewController.swift */; };
 		F420587824A9C5C600E05954 /* ReportsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F420587724A9C5C600E05954 /* ReportsTableViewCell.swift */; };
 		F4402F94248FBCB8006D5C80 /* RecommendedBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4402F90248FBCB8006D5C80 /* RecommendedBottomView.swift */; };
@@ -50,6 +51,7 @@
 		DB69CCD704D721B2A9CA16E9 /* Pods-Cheers!Calory!.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cheers!Calory!.release.xcconfig"; path = "Target Support Files/Pods-Cheers!Calory!/Pods-Cheers!Calory!.release.xcconfig"; sourceTree = "<group>"; };
 		E70B7F4124AC425D00BA713A /* ReportDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDetailViewController.swift; sourceTree = "<group>"; };
 		E70B7F4324AC438000BA713A /* ReprotsDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReprotsDetailTableViewCell.swift; sourceTree = "<group>"; };
+		E70B7F4924B2FFBD00BA713A /* ReportsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsDetailView.swift; sourceTree = "<group>"; };
 		F41FFBB624ADC12B004073BE /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
 		F420587724A9C5C600E05954 /* ReportsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsTableViewCell.swift; sourceTree = "<group>"; };
 		F4402F90248FBCB8006D5C80 /* RecommendedBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendedBottomView.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				F4CD5B7E24A5E61900A9A496 /* ReportHeaderView.swift */,
 				F420587724A9C5C600E05954 /* ReportsTableViewCell.swift */,
 				E70B7F4324AC438000BA713A /* ReprotsDetailTableViewCell.swift */,
+				E70B7F4924B2FFBD00BA713A /* ReportsDetailView.swift */,
 			);
 			path = Report;
 			sourceTree = "<group>";
@@ -401,6 +404,7 @@
 				F454E883248622BC00BF1608 /* FirstUserInfoViewController.swift in Sources */,
 				F454E8982486321A00BF1608 /* UserInfo.swift in Sources */,
 				F454E8A3248683D700BF1608 /* LastUserInfoViewController.swift in Sources */,
+				E70B7F4A24B2FFBD00BA713A /* ReportsDetailView.swift in Sources */,
 				F454E87E2486221200BF1608 /* DailyViewController.swift in Sources */,
 				F454E89E2486329300BF1608 /* Barcode.swift in Sources */,
 				E70B7F4224AC425D00BA713A /* ReportDetailViewController.swift in Sources */,
