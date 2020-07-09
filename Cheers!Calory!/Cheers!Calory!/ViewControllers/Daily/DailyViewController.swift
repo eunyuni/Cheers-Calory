@@ -28,14 +28,17 @@ class DailyViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Daily"
         view.backgroundColor = .white
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = CGFloat.dynamicYMargin(margin: 60)
         
-        
+        setNavigationBar()
         setUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -50,8 +53,13 @@ class DailyViewController: UIViewController {
     }
     
     private func setNavigationBar() {
+        navigationController?.isNavigationBarHidden = false
         navigationItem.title = "Daily"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "pencil"), style: .plain, target: self, action: #selector(didTapWritButton(_:)))
+        self.navigationController?.navigationBar.tintColor = UIColor.black
     }
+    
+    
     
     private func setUI() {
         view.backgroundColor = .white
@@ -73,6 +81,13 @@ class DailyViewController: UIViewController {
             $0.top.equalTo(headerView.snp.bottom).offset(CGFloat.dynamicYMargin(margin: 15))
             $0.leading.trailing.bottom.equalTo(guide)
         }
+    }
+    
+    @objc private func didTapWritButton(_ sender: UIButton) {
+        let writeVC = WriteViewController()
+        
+        let navi = UINavigationController(rootViewController: writeVC)
+        present(navi, animated: true, completion: nil)
     }
 }
 
@@ -237,6 +252,7 @@ extension DailyViewController: DailySectionHeaderViewDelegate {
         let navi = UINavigationController(rootViewController: searchVC)
         present(navi, animated: true, completion: nil)
     }
+    
     
     
 }
