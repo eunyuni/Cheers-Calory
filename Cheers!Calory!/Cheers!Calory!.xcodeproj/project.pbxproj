@@ -12,6 +12,8 @@
 		E70B7F4424AC438000BA713A /* ReprotsDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70B7F4324AC438000BA713A /* ReprotsDetailTableViewCell.swift */; };
 		E70B7F4A24B2FFBD00BA713A /* ReportsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70B7F4924B2FFBD00BA713A /* ReportsDetailView.swift */; };
 		F41FFBB724ADC12B004073BE /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41FFBB624ADC12B004073BE /* ProductDetailViewController.swift */; };
+		F41FFBB924ADE5F4004073BE /* WriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41FFBB824ADE5F4004073BE /* WriteViewController.swift */; };
+		F41FFBBB24ADE620004073BE /* WriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41FFBBA24ADE620004073BE /* WriteView.swift */; };
 		F420587824A9C5C600E05954 /* ReportsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F420587724A9C5C600E05954 /* ReportsTableViewCell.swift */; };
 		F4402F94248FBCB8006D5C80 /* RecommendedBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4402F90248FBCB8006D5C80 /* RecommendedBottomView.swift */; };
 		F4402F95248FBCB8006D5C80 /* CaloryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4402F91248FBCB8006D5C80 /* CaloryView.swift */; };
@@ -53,6 +55,8 @@
 		E70B7F4324AC438000BA713A /* ReprotsDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReprotsDetailTableViewCell.swift; sourceTree = "<group>"; };
 		E70B7F4924B2FFBD00BA713A /* ReportsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsDetailView.swift; sourceTree = "<group>"; };
 		F41FFBB624ADC12B004073BE /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
+		F41FFBB824ADE5F4004073BE /* WriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewController.swift; sourceTree = "<group>"; };
+		F41FFBBA24ADE620004073BE /* WriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteView.swift; sourceTree = "<group>"; };
 		F420587724A9C5C600E05954 /* ReportsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsTableViewCell.swift; sourceTree = "<group>"; };
 		F4402F90248FBCB8006D5C80 /* RecommendedBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendedBottomView.swift; sourceTree = "<group>"; };
 		F4402F91248FBCB8006D5C80 /* CaloryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaloryView.swift; sourceTree = "<group>"; };
@@ -170,6 +174,7 @@
 				F454E88D2486243D00BF1608 /* CameraViewController.swift */,
 				F454E8882486241300BF1608 /* FoodDetailViewController.swift */,
 				F41FFBB624ADC12B004073BE /* ProductDetailViewController.swift */,
+				F41FFBB824ADE5F4004073BE /* WriteViewController.swift */,
 			);
 			path = Daily;
 			sourceTree = "<group>";
@@ -217,6 +222,7 @@
 				F46AEF152487C17400FE575F /* DailyHeaderView.swift */,
 				F46AEF172487C1D600FE575F /* DailyTableViewCell.swift */,
 				F46AEF1B2487C8F000FE575F /* DailySectionHeaderView.swift */,
+				F41FFBBA24ADE620004073BE /* WriteView.swift */,
 			);
 			path = Daily;
 			sourceTree = "<group>";
@@ -394,6 +400,7 @@
 				F46AEF182487C1D600FE575F /* DailyTableViewCell.swift in Sources */,
 				F454E896248631FD00BF1608 /* Food.swift in Sources */,
 				F4761E552491F62A001F3462 /* DailyCaloricIntake.swift in Sources */,
+				F41FFBBB24ADE620004073BE /* WriteView.swift in Sources */,
 				F4402F95248FBCB8006D5C80 /* CaloryView.swift in Sources */,
 				F454E89A2486324000BF1608 /* ColorZip.swift in Sources */,
 				E70B7F4424AC438000BA713A /* ReprotsDetailTableViewCell.swift in Sources */,
@@ -420,6 +427,7 @@
 				F454E8772486210600BF1608 /* Extensions.swift in Sources */,
 				F454E8802486222100BF1608 /* ReportViewController.swift in Sources */,
 				F454E8A02486839900BF1608 /* SecondUserInfoViewController.swift in Sources */,
+				F41FFBB924ADE5F4004073BE /* WriteViewController.swift in Sources */,
 				F420587824A9C5C600E05954 /* ReportsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

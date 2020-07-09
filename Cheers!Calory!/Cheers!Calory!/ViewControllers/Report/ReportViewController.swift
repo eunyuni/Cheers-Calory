@@ -29,6 +29,10 @@ class ReportViewController: UIViewController {
         updateGraph()
     }
     
+    private func setNavigationBar() {
+        navigationItem.title = "Reports"
+    }
+    
     private func setUI() {
         [headerView, tableView].forEach {
             view.addSubview($0)
