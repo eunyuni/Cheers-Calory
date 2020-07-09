@@ -19,7 +19,7 @@ struct DailyIntakeDB: Codable {
     var todayIntake = DailyCaloricIntake() {
         didSet {
             let key = todayIntake.today
-            print("didset:", key)
+            print("오늘식단변동:", key)
             UserDefaults.standard.set(try? JSONEncoder().encode(todayIntake), forKey: key)
         }
     }

@@ -97,7 +97,7 @@ class FoodDetailViewController: UIViewController {
         circleView.layer.borderColor = ColorZip.purple.cgColor
         
         if let detail = dailyIntakeDetail {
-            servingSizeLabel.text = "1회제공량 \(detail.servingSize)g"
+            servingSizeLabel.text = "섭취량 \(detail.servingSize)g"
             proteinLabel.text = "단백질 \(detail.protein)g"
             fatLabel.text = "지방 \(detail.fat)g"
             carbohydrateLabel.text = "탄수화물 \(detail.carbohydrate)g"
