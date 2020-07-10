@@ -22,7 +22,7 @@ class WriteView: UIView {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         setUI()
-        addDoneButtonOnKeyboard()
+//        addDoneButtonOnKeyboard()
     }
     
     required init?(coder: NSCoder) {
@@ -50,6 +50,12 @@ class WriteView: UIView {
         foodNameTextField.layer.cornerRadius = 8
         foodNameTextField.layer.borderColor = ColorZip.lightGray.cgColor
         
+        portionSizeTextField.placeholder = "섭취량(g)"
+        caloryTextField.placeholder = "칼로리(kcal)"
+        proteinTextField.placeholder = "단백질(g)"
+        fatTextField.placeholder = "지방(g)"
+        carbohydrateTextField.placeholder = "탄수화물(g)"
+        
         [portionSizeTextField, caloryTextField, proteinTextField, fatTextField, carbohydrateTextField].forEach {
             self.addSubview($0)
             $0.delegate = self
@@ -65,13 +71,12 @@ class WriteView: UIView {
                 $0.width.equalTo(self.snp.width).multipliedBy(0.6)
                 $0.height.equalTo(CGFloat.dynamicYMargin(margin: 50))
             }
+            
+            $0.inputAccessoryView = createToolBars(text: $0.placeholder!)
         }
         
-        portionSizeTextField.placeholder = "섭취량(g)"
-        caloryTextField.placeholder = "칼로리(kcal)"
-        proteinTextField.placeholder = "단백질(g)"
-        fatTextField.placeholder = "지방(g)"
-        carbohydrateTextField.placeholder = "탄수화물(g)"
+        
+        
         
         if let vc = self.getOwningViewController() {
             vc.navigationController?.navigationItem.rightBarButtonItem?.isEnabled = false
@@ -119,27 +124,38 @@ class WriteView: UIView {
     }
     
     // MARK: 숫자키보드에 done버튼 추가
-    private func addDoneButtonOnKeyboard(){
-        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
-        doneToolbar.barStyle = .default
+    private func createToolBars(text: String) -> UIToolbar {
+        let toolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
+        toolbar.barStyle = .default
         
+        let label = UILabel()
+        label.text = text
+        let labelItem = UIBarButtonItem(customView: label)
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneButtonAction(_:)))
         
-        let items = [flexSpace, done]
-        doneToolbar.items = items
-        doneToolbar.sizeToFit()
+        let items = [labelItem, flexSpace, done]
+        toolbar.items = items
+        toolbar.sizeToFit()
         
-        portionSizeTextField.inputAccessoryView = doneToolbar
-        caloryTextField.inputAccessoryView = doneToolbar
-        proteinTextField.inputAccessoryView = doneToolbar
-        fatTextField.inputAccessoryView = doneToolbar
-        carbohydrateTextField.inputAccessoryView = doneToolbar
+        return toolbar
     }
     
     
-    
     @objc private func doneButtonAction(_ sender: UITextField){
+        
+//        switch sender {
+//        case portionSizeTextField.inputAccessoryView.butto:
+//            caloryTextField.becomeFirstResponder()
+//        case caloryTextField:
+//            proteinTextField.becomeFirstResponder()
+//        case proteinTextField:
+//            fatTextField.becomeFirstResponder()
+//        case fatTextField:
+//            carbohydrateTextField.becomeFirstResponder()
+//        default:
+//            break
+//        }
         portionSizeTextField.resignFirstResponder()
         caloryTextField.resignFirstResponder()
         proteinTextField.resignFirstResponder()
